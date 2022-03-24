@@ -1,3 +1,7 @@
 # DigitalMandi
 jay javan jay kisan
-Cool project
+Jim Patel
+Amish Singh
+Navdeep
+Amish bhai bura na mano git he
+
