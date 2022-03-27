@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs"); //for password hashing & salt
 
-//Route1:SignUp a User using : POST "/api/farmer/signup"
+//Route1:SignUp a User using : POST "/api/farmer/fsignup"
 
 router.post(
   "/fsignup",
@@ -57,7 +57,7 @@ router.post(
   }
 );
 
-//Route2:Login a user using : POST "/api/farmer/login"
+//Route2:Login a user using : POST "/api/farmer/flogin"
 
 router.post(
   "/flogin",

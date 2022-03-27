@@ -5,7 +5,7 @@ const Merchant = require("../Models/MerchantSchema");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs"); //for password hashing & salt
-//Route1:Create a User using : POST "/api/merchant/signup"
+//Route1:Create a User using : POST "/api/merchant/msignup"
 
 router.post(
   "/msignup",
@@ -56,7 +56,7 @@ router.post(
 );
 
 
-//Route2:Login a merchant using : POST "/api/merchant/login"
+//Route2:Login a merchant using : POST "/api/merchant/mlogin"
 
 router.post(
   "/mlogin",
