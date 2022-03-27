@@ -1,13 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-const User = require("../Models/User");
+const Farmer = require("../Models/FarmerSchema");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs"); //for password hashing & salt
 
-//Route1:Create a User using : POST "/api/farmer/signup"
+//Route1:SignUp a User using : POST "/api/farmer/signup"
 
 router.post(
-  "/signup",
+  "/fsignup",
   [
     body("email", "Enter a Valid Email").isEmail(),
     body("name", "Enter a Valid Name").isLength({ min: 3 }),
@@ -22,18 +24,22 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      let userphone = await User.findOne({ phoneNumber: req.body.phoneNumber });
-      let user = await User.findOne({ email: req.body.email });
+      let userphone = await Farmer.findOne({
+        phoneNumber: req.body.phoneNumber,
+      });
+      let user = await Farmer.findOne({ email: req.body.email });
       if (user || userphone) {
         return res.status(400).json({ error: "Sorry User Already Exist" });
       }
-
+      const salt = await bcrypt.genSalt(10);
+      const hashPass = await bcrypt.hash(req.body.password, salt);
       //Create User
-      user = await User.create({
+      user = await Farmer.create({
         name: req.body.name,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
-        password: req.body.password,
+        password:hashPass,
+       
       });
       const data = {
         user: {
@@ -41,7 +47,7 @@ router.post(
         },
       };
 
-      const authToken = jwt.sign(data, JWT_SECRET);
+      const authToken = jwt.sign(data, process.env.JWT_SECRET);
       // console.log(authToken);
       res.json({ authToken });
     } catch (error) {
@@ -51,9 +57,10 @@ router.post(
   }
 );
 
-//Route2:Create a user using : POST "/api/farmer/login"
+//Route2:Login a user using : POST "/api/farmer/login"
+
 router.post(
-  "/login",
+  "/flogin",
   [
     body("email", "Enter a Valid Email").isEmail(),
     body("password", "Password cannot be Blank").exists(),
@@ -66,13 +73,13 @@ router.post(
     }
     const { email, password } = req.body;
     try {
-      let user = await User.findOne({ email });
+      let user = await Farmer.findOne({ email });
       if (!user) {
         return res
           .status(400)
           .json({ error: "Please Login with Correct Credential" });
       }
-
+     
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
         return res
@@ -84,9 +91,8 @@ router.post(
           id: user.id,
         },
       };
-      const authToken = jwt.sign(data, JWT_SECRET);
-      // console.log(authToken);
-
+      const authToken = jwt.sign(data, process.env.JWT_SECRET);
+      console.log("Login Successful");
       res.json({ authToken });
     } catch (error) {
       console.error(error.message);
