@@ -16,7 +16,7 @@ const fetchfarmer = async (req, res, next) => {
         const farmerl = await Farmer.findById(data.user.id);
         //console.log(farmerl);
         if(!farmerl){
-            res.status(401).send({ error: "Please authenticate as a farmer" });
+            res.status(403).send({ error: "Please authenticate as a farmer" });
         }
         else{
             req.user = data.user;

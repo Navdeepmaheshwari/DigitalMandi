@@ -16,7 +16,7 @@ const fetchmerchant = async (req, res, next) => {
         const farmerl = await Merchant.findById(data.user.id);
         //console.log(farmerl);
         if(!farmerl){
-            res.status(401).send({ error: "Please authenticate as a merchant" });
+            res.status(403).send({ error: "Please authenticate as a merchant" });
         }
         else{
             req.user = data.user;

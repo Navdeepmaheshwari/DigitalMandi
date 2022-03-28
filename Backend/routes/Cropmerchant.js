@@ -30,6 +30,11 @@ router.post('/list/:id', fetchmerchant, [
             }
             const oldcrop = await CropSchema.findById(req.params.id);
             if (!oldcrop) { return res.status(404).send("Not Found") } 
+            const check = await CropSchema.find({price:price , merchant:req.user.id});
+            //console.log(check);
+            if(check.length != 0){
+                return res.status(208).send("You have a already bid with same price");
+            }
           const {cropName, address, market, weight, user}=oldcrop;
            // console.log(crop);
            console.log(req.user.id);
@@ -37,7 +42,7 @@ router.post('/list/:id', fetchmerchant, [
                 cropName, address, market, weight, user, price:price, merchant:req.user.id
             })
             console.log("Crop price and merchant added");
-
+           
             const savedcrop = await crop.save();
 
             res.json(savedcrop);
