@@ -6,7 +6,7 @@ const CropSchema = require('../models/CropSchema');
 
 //Route 1: Adding crop as farmer  POST "/api/crop/farmer/addcrop"
 
-router.post('/farmer/addcrop', fetchuser, [
+router.post('/addcrop', fetchuser, [
     body('cropName', 'Enter a valid title').isLength({ min: 2 }),
     body('address', 'Address must be atleast 5 characters').isLength({ min: 5 }),
     body('market', 'Enter a valid market').isLength({ min: 2 }),
@@ -32,5 +32,31 @@ router.post('/farmer/addcrop', fetchuser, [
             res.status(500).send("Internal Server Error");
         }
     })
+
+
+//Route 2: Adding crop as farmer  POST "/api/crop/farmer/current"
+router.get('/current', fetchuser, async (req, res) => {
+    try {
+        const notes = await CropSchema.find({ user: req.user.id , flag : "false"});
+        res.json(notes)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+//Route 3: Adding crop as farmer  POST "/api/crop/farmer/dashboard"
+
+router.get('/dashboard', fetchuser, async (req, res) => {
+    try {
+        const notes = await CropSchema.find({ user: req.user.id , flag : "true"});
+        res.json(notes)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+
 
     module.exports = router
