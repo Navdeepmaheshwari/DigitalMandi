@@ -4,6 +4,7 @@ const connectToMongo = require("./db");
 const farmerRoute = require("./routes/Farmer");
 const merchantRoute = require("./routes/Merchant");
 const cropfarmerRoute =require("./routes/Cropfarmer");
+const cropmerchantRoute =require("./routes/Cropmerchant");
 
 connectToMongo();
 
@@ -14,7 +15,8 @@ app.use(express.json());
 //Available Routes
 app.use("/api/farmer", farmerRoute);
 app.use("/api/merchant", merchantRoute);
-app.use("/api/crop/farmer", cropfarmerRoute);
+app.use("/api/sell/farmer", cropfarmerRoute);
+app.use("/api/buy/merchant", cropmerchantRoute);
 
 app.listen(port, () => {
   console.log(`Backend listening at http://localhost:${port}`);

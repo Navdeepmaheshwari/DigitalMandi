@@ -23,7 +23,7 @@ const CropSchema = new Schema({
   },
   merchant: {
     type: mongoose.Schema.Types.ObjectId,
-    default: "6240ba01d8b28a93639ac403",
+    default: "62407b088b7a6eff168a9123",
     ref: "Merchant",
   },
   flag: {
