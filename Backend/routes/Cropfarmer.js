@@ -74,8 +74,14 @@ router.put('/confirm/:id',fetchfarmer, async(req,res) =>{
             return res.status(208).json("Your crop is already sell");
 
         }
-        console.log(crop);
+        //console.log(crop);
         const newcrop= await CropSchema.findByIdAndUpdate(req.params.id,{flag:"true"});
+        CropSchema.deleteMany({user:crop.user,cropName:crop.cropName,market:crop.market,flag:false,weight:crop.weight,address:crop.address}).then(function(){
+            console.log("Data deleted"); // Success
+        }).catch(function(error){
+            console.log(error); // Failure
+        });
+        //console.log(newcrop);
        
         res.json("Your sell order is confirmed");
     } catch (error) {
