@@ -1,8 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { SignUpForm } from './Components/farmer forms/FSignUpForm';
-import { LoginForm } from './Components/farmer forms/FLoginForm';
+import { FSignUpForm } from './Components/farmer forms/FSignUpForm';
+import { FLoginForm } from './Components/farmer forms/FLoginForm';
 import {Navbar} from './Components/nav links/CNav';
+import { MLoginForm } from './Components/merchant form/MLoginForm';
+import { MSignUpForm } from './Components/merchant form/MSignUpForm';
 import {Hero} from './Components/hero-section/CHero';
 
 function App() {
@@ -19,11 +21,17 @@ function App() {
               <Route exact path="/about">
                 
               </Route>
-              <Route exact path="/login">
-              <LoginForm/>
+              <Route exact path="/flogin">
+              <FLoginForm/>
               </Route>
-              <Route exact path="/signup">
-              <SignUpForm/>
+              <Route exact path="/fsignup">
+              <FSignUpForm/>
+              </Route>
+              <Route exact path="/msignup">
+              <MSignUpForm/>
+              </Route>
+              <Route exact path="/mlogin">
+              <MLoginForm/>
               </Route>
             </Switch>
           </div>
