@@ -18,6 +18,7 @@ router.post(
     }),
   ],
   async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -26,6 +27,7 @@ router.post(
       let userphone = await Merchant.findOne({ phoneNumber: req.body.phoneNumber });
       let user = await Merchant.findOne({ email: req.body.email });
       if (user || userphone) {
+         success = false;
         return res.status(400).json({ error: "Sorry User Already Exist" });
       }
 
@@ -46,8 +48,9 @@ router.post(
       };
       // console.log(user.id)
       const authToken = jwt.sign(data, process.env.JWT_SECRET);
+       success = true;
       // console.log(authToken);
-      res.json({ authToken });
+      res.json({success, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Error Occured");
@@ -65,6 +68,7 @@ router.post(
     body("password", "Password cannot be Blank").exists(),
   ],
   async (req, res) => {
+    let success = false;
     //if error return Bad request
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -74,6 +78,7 @@ router.post(
     try {
       let user = await Merchant.findOne({ email });
       if (!user) {
+         success = false;
         return res
           .status(400)
           .json({ error: "Please Login with Correct Credential" });
@@ -81,6 +86,7 @@ router.post(
    
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
+         success = false;
         return res
           .status(400)
           .json({ error: "Please Login with Correct Credential" });
@@ -91,9 +97,10 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, process.env.JWT_SECRET);
+       success = true;
       // console.log(authToken);
       // console.log(user.id);
-      res.json({ authToken });
+      res.json({success, authToken });
     } catch (error) {
       console.error(error.message);
   res.status(500).send("Internal Error Occured"); 

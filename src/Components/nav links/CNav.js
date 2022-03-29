@@ -11,10 +11,26 @@ export const Navbar = () => {
         </button>
         <div class="collapse navbar-collapse d-flex flex-row-reverse" id="navbarNavAltMarkup">
           <div class="navbar-nav d-flex gap-5">
-          <a className="nav-item nav-link active text-white" href="/">Home</a>
-            <a className="nav-item nav-link text-white" href="/about">About Us</a>
-            <a className="nav-item nav-link text-white" href="/login">Sign in</a>
-            <a className="nav-item nav-link text-white" href="/signup">Sign up</a>
+          <Link className="nav-item nav-link text-white active" to="/">Home</Link>
+            <Link className="nav-item nav-link text-white" to="/about">About Us</Link>
+           
+          <li class="nav-item dropdown">
+          <Link class="nav-link dropdown-toggle text-white"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Signup</Link>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><Link class="dropdown-item" to="fsignup">Farmer</Link></li>
+            <li><Link class="dropdown-item" to="msignup">Merchant</Link></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <Link class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login</Link>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><Link class="dropdown-item" to="flogin">Farmer</Link></li>
+            <li><Link class="dropdown-item" to="mlogin">Merchant</Link></li>
+          
+          </ul>
+        </li>
           </div>
         </div>
         </div>

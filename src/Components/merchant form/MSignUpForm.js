@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../../Components.css";
-export const SignUpForm = () => {
+export const MSignUpForm = () => {
   const [user, setUser] = useState({
     name: "",
     email: "",
     phoneNumber: "",
     password: "",
   });
+  let history = useHistory();
   let name, value;
   const handleInputs = (e) => {
     console.log(e);
@@ -34,10 +36,11 @@ export const SignUpForm = () => {
       }),
     });
     const data = await res.json();
-    if (data.status === 400 || !data) {
-      window.alert("Invalid Credential");
-    } else {
+    if (data.success) {
       window.alert("Registration Successfull");
+      history.push("/mlogin");
+    } else {
+      window.alert("Invalid Credential");
     }
   };
 
@@ -48,7 +51,7 @@ export const SignUpForm = () => {
           <div className="col-lg-10 col-xl-9 mx-auto">
             <div className="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
               <div className="card-body p-4 p-sm-5">
-                <h3 className="card-title text-center mb-4  fs-5">Register</h3>
+                <h3 className="card-title text-center mb-4  fs-3">Merchant Register</h3>
                 <form method="POST">
                   <div className="form-floating mb-3">
                     <input
@@ -111,9 +114,9 @@ export const SignUpForm = () => {
                       Register
                     </button>
                   </div>
-                  <a className="d-block text-center mt-2 small" href="/">
-                    Have an account? Sign In
-                  </a>
+                  <Link className="d-block text-center mt-2 small" to="/mlogin">
+                    Have an account? Login
+                  </Link>
 
                   <hr className="my-4" />
 
