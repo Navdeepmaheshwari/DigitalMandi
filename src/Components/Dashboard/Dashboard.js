@@ -1,0 +1,15 @@
+import React from 'react'
+import { Link } from "react-router-dom";
+export const Dashboard = () => {
+  return (
+    <>
+    <div className="container d-flex justify-content-center my-5 bg-dark text-white text-center">
+        <div className="">
+
+        <h1 className="my-5">Welcome to Dashboard</h1>
+        <h3 className='my-5'>Login Successful</h3>
+        </div>
+    </div>
+    </>
+  )
+}
