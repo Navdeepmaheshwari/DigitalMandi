@@ -7,8 +7,8 @@ import {Hero} from './Components/hero-section/CHero';
 
 function App() {
   return (
-    <>
-    <Router>
+    <div>
+          <Router>
           <Navbar />
           {/* <Alert/> */}
           <div className="container">
@@ -28,7 +28,7 @@ function App() {
             </Switch>
           </div>
         </Router>
-    </>
+    </div>
   );
 }
 
