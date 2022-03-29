@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../../Components.css";
 export const SignUpForm = () => {
   const [user, setUser] = useState({
@@ -8,6 +9,7 @@ export const SignUpForm = () => {
     phoneNumber: "",
     password: "",
   });
+  let history = useHistory();
   let name, value;
   const handleInputs = (e) => {
     console.log(e);
@@ -34,10 +36,14 @@ export const SignUpForm = () => {
       }),
     });
     const data = await res.json();
-    if (data.status === 400 || !data) {
-      window.alert("Invalid Credential");
-    } else {
+    // if (data.status === 400 || !data) {
+    // } else {
+    // }
+    if (data.success) {
       window.alert("Registration Successfull");
+      history.push("/login");
+    } else {
+      window.alert("Invalid Credential");
     }
   };
 
