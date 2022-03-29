@@ -38,6 +38,9 @@ router.post('/addcrop', fetchfarmer, [
 router.get('/current', fetchfarmer, async (req, res) => {
     try {
         const notes = await CropSchema.find({ user: req.user.id , flag : "false", price :{ $ne: 0 }});
+        notes.sort((a, b) => {
+            return b.price - a.price;
+        });
         res.json(notes)
     } catch (error) {
         console.error(error.message);
