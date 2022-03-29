@@ -18,6 +18,7 @@ router.get('/list', fetchmerchant, [
         }
     })
 //Route 2: Bid for the crop POST "/api/buy/merchant/list/:id"
+//some more logic remaining if same merchant bid with highr price than lower bid should be delete.
 router.post('/list/:id', fetchmerchant, [
     body('price', 'Please enter the bid').isLength({ min: 1 }),], async (req, res) => {
         try {
@@ -54,22 +55,23 @@ router.post('/list/:id', fetchmerchant, [
     })
 
 //Route 3: Adding crop as farmer  get "/api/buy/merchant/current"
+//Some logic remaining.
 router.get('/current', fetchmerchant, async (req, res) => {
     try {
-        const notes = await CropSchema.find({ user: req.user.id , flag : "false"});
-        res.json(notes)
+        const crops = await CropSchema.find({ merchant: req.user.id , flag : "false"});
+        res.json(crops)
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
 })
 
-//Route 4: Adding crop as farmer  POST "/api/buy/merchant/list"
+//Route 4: Adding crop as farmer  POST "/api/buy/merchant/dashboard"
 
 router.get('/dashboard', fetchmerchant, async (req, res) => {
     try {
-        const notes = await CropSchema.find({ user: req.user.id , flag : "true"});
-        res.json(notes)
+        const crops = await CropSchema.find({ merchant: req.user.id , flag :"true"});
+        res.json(crops)
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");
