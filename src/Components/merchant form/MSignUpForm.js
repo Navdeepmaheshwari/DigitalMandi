@@ -49,9 +49,9 @@ export const MSignUpForm = () => {
       <div className="container ">
         <div className="row ">
           <div className="col-lg-10 col-xl-9 mx-auto">
-            <div className="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+            <div className="card flex-row my-5 border-0 shadow  overflow-hidden">
               <div className="card-body p-4 p-sm-5">
-                <h3 className="card-title text-center mb-4  fs-3">Merchant Register</h3>
+                <h3 className="card-title text-center  fs-3">Merchant Register</h3>
                 <form method="POST">
                   <div className="form-floating mb-3">
                     <input
@@ -114,7 +114,7 @@ export const MSignUpForm = () => {
                       Register
                     </button>
                   </div>
-                  <Link className="d-block text-center mt-2 small" to="/mlogin">
+                  <Link className="d-block text-center mt-2 small smalltext" to="/mlogin" >
                     Have an account? Login
                   </Link>
 

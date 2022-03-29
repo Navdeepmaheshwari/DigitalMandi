@@ -6,6 +6,7 @@ import {Navbar} from './Components/nav links/CNav';
 import { MLoginForm } from './Components/merchant form/MLoginForm';
 import { MSignUpForm } from './Components/merchant form/MSignUpForm';
 import {Hero} from './Components/hero-section/CHero';
+import { Dashboard } from './Components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
               </Route>
               <Route exact path="/mlogin">
               <MLoginForm/>
+              </Route>
+              <Route exact path="/dashboard">
+              <Dashboard/>
               </Route>
             </Switch>
           </div>
