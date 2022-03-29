@@ -1,0 +1,39 @@
+body {
+    background-image: url("../../images/farmer\ -logging.png");
+    background-size:     cover;                      
+    background-repeat:   no-repeat;
+}
+
+.joinbtn{
+    text-decoration: none;
+     color: #147B0B;;
+}
+.ctaButton{
+padding: 0.3em 0.8em;
+font-size: 2.05rem;
+border-radius: .5rem;
+color:green;
+background:white;
+margin-left:25%;
+}
+
+.introText {
+    color:white;
+    font-family: 'Righteous', cursive;
+    font-size:5rem;
+    line-height:1.0;
+    width:80%;
+    text-align:left;
+    margin-left:25%;
+
+}
+
+.fullscreen {
+    min-height:80vh;
+}
+
+.highlight {
+    font-size: 1.5em;
+    color:#94FF0D;
+}
+
