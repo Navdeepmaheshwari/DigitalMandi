@@ -4,29 +4,40 @@ import "../../Components.css";
 export const LoginForm = () => {
   const [user, setUser] = useState({
     email: "",
-
     password: "",
   });
+
   let history = useHistory();
+  let name, value;
+  const handleInputs = (e) => {
+    console.log(e);
+    name = e.target.name;
+    value = e.target.value;
+
+    setUser({ ...user, [name]: value });
+  };
   const handleLogin = async (e) => {
     e.preventDefault();
+    const { email, password } = user;
     const res = await fetch("/api/farmer/flogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: user.email,
-        password: user.password,
+        email,
+        password,
       }),
     });
-    const data = await res.json();
-    if (data.status === 400 || !data) {
-      window.alert("Invalid Credential");
-    } else {
+    const json = await res.json();
+    console.log(json);
+    if (json.success) {
+      // Save the auth token and redirect
       window.alert("Login Successfull");
-      localStorage.setItem("token", data.authtoken);
-      // history.push("/");
+      localStorage.setItem("token", json.authtoken);
+      history.push("/");
+    } else {
+      alert("Invalid credentials");
     }
   };
   return (
@@ -43,8 +54,10 @@ export const LoginForm = () => {
                       type="email"
                       // onChange={handleInputs}
                       className="form-control"
+                      onChange={handleInputs}
                       id="email"
                       name="email"
+                      value={user.email}
                       placeholder="name@example.com"
                     />
                     <label htmlFor="email">Email address</label>
@@ -55,8 +68,10 @@ export const LoginForm = () => {
                       type="password"
                       // onChange={handleInputs}
                       className="form-control"
+                      onChange={handleInputs}
                       id="password"
                       name="password"
+                      value={user.password}
                       placeholder="Password"
                     />
                     <label htmlFor="password">Password</label>
@@ -72,7 +87,7 @@ export const LoginForm = () => {
                     </button>
                   </div>
 
-                  <a className="d-block text-center mt-2 small" href="/">
+                  <a className="d-block text-center mt-2 small" href="/signup">
                     Haven't an account? Register
                   </a>
 

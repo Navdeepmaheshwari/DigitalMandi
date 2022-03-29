@@ -57,6 +57,31 @@ router.get('/dashboard', fetchfarmer, async (req, res) => {
     }
 })
 
+//Route 4: Adding crop as farmer  POST "/api/sell/farmer/confirm/:id"
+//some logic still remaining
+
+router.put('/confirm/:id',fetchfarmer, async(req,res) =>{
+    try {
+        let crop = await CropSchema.findById(req.params.id);
+        if (!crop) { return res.status(404).send("Not Found") }
+        if (crop.user.toString() !== req.user.id) {
+            return res.status(401).send("Not Allowed");
+        }
+        if(crop.flag === true){
+            return res.status(208).json("Your crop is already sell");
+
+        }
+        console.log(crop);
+        const newcrop= await CropSchema.findByIdAndUpdate(req.params.id,{flag:"true"});
+       
+        res.json("Your sell order is confirmed");
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+
+})
+
 
 
     module.exports = router
