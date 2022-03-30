@@ -1,8 +1,14 @@
 import React from "react";
 import "./CNav.css";
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 export const Navbar = () => {
+  let history=useHistory();
+const handleLogout =()=>{
+  localStorage.removeItem("token");
+  history.push("/login")
+}
+
   let location = useLocation();
   useEffect(() => {}, [location]);
 
@@ -42,24 +48,12 @@ export const Navbar = () => {
             >
               About Us
             </Link>
-            <Link
-              className={`nav-item nav-link text-white  ${
-                location.pathname === "/signup" ? "act" : " "
-              }`}
-              to="/signup"
-            >
-              Signup
-            </Link>
-            <Link
-              className={`nav-item nav-link text-white  ${
-                location.pathname === "/login" ? "act" : " "
-              }`}
-              to="/login"
-            >
-              Login
-            </Link>
+            {!localStorage.getItem("token") ?<form className="my-2">
+           <Link className="btn btn-success mx-1" to="/login" role="button">Login</Link>
+           <Link className="btn btn-success mx-3" to="/signup" role="button">Signup</Link>
+            </form> :<button onClick={handleLogout} className="btn btn-success"> Logout</button>}
            
-          </div>
+          </div> 
         </div>
       </div>
     </nav>
