@@ -18,7 +18,7 @@ export const Hero = () => {
             className="btn btn-lg fw-bold text-uppercase ctaButton"
             type="submit"
             >
-            <Link to="/flogin" className="joinbtn">JOIN US</Link>
+            <Link to="/login" className="joinbtn">JOIN US</Link>
           </button>
         </div>
       </div>

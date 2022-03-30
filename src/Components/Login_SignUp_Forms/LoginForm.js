@@ -40,14 +40,14 @@ export const LoginForm = () => {
     console.log(json);
     if (json.success &&  role === "farmer") {
       // Save the auth token and redirect
-      window.alert("Login Successfull");
       localStorage.setItem("token", json.authtoken);
+      window.alert("Login Successfull");
       history.push("/dashboard");
     }
     else if (json.success &&  role === "merchant") {
       // Save the auth token and redirect
-      window.alert("Login Successfull");
       localStorage.setItem("token", json.authtoken);
+      window.alert("Login Successfull");
       history.push("/dashboard");
     } 
     else {
