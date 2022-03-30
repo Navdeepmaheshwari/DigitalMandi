@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../../Components.css";
-export const FLoginForm = () => {
+export const LoginForm = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -19,8 +19,14 @@ export const FLoginForm = () => {
   };
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { email, password } = user;
-    const res = await fetch("/api/farmer/flogin", {
+    const { email, password ,role} = user;
+    let fetchUrl = "/api/farmer/flogin";
+    if (role === "farmer") {
+      fetchUrl = "/api/farmer/flogin";
+    } else if (role === "merchant") {
+      fetchUrl = "/api/merchant/mlogin";
+    }
+    const res = await fetch(fetchUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,12 +38,19 @@ export const FLoginForm = () => {
     });
     const json = await res.json();
     console.log(json);
-    if (json.success) {
+    if (json.success &&  role === "farmer") {
       // Save the auth token and redirect
       window.alert("Login Successfull");
       localStorage.setItem("token", json.authtoken);
       history.push("/dashboard");
-    } else {
+    }
+    else if (json.success &&  role === "merchant") {
+      // Save the auth token and redirect
+      window.alert("Login Successfull");
+      localStorage.setItem("token", json.authtoken);
+      history.push("/dashboard");
+    } 
+    else {
       alert("Invalid credentials");
     }
   };
@@ -48,7 +61,7 @@ export const FLoginForm = () => {
           <div className="col-lg-10 col-xl-9 mx-auto">
             <div className="card flex-row my-5 border-0 shadow  overflow-hidden">
               <div className="card-body p-4 p-sm-5">
-                <h3 className="card-title text-center  fs-3">Farmer Login</h3>
+                <h3 className="card-title text-center  fs-3">Login</h3>
                 <form method="POST">
                   <div className="form-floating mb-3">
                     <input
@@ -77,7 +90,22 @@ export const FLoginForm = () => {
                     />
                     <label htmlFor="password">Password</label>
                   </div>
-
+                  <div className="mb-3">
+                    <label class="my-3 me-3" for="role">
+                      Role :
+                    </label>
+                    <select
+                      id="role"
+                      name="role"
+                      value={user.role}
+                      onChange={handleInputs}
+                      class="custom-select my-1 mr-sm-2"
+                    >
+                      <option selected>Choose...</option>
+                      <option value="farmer">Farmer</option>
+                      <option value="merchant">Merchant</option>
+                    </select>
+                  </div>
                   <div className="d-grid mb-2">
                     <button
                       className="btn btn-lg btn-primary btn-login fw-bold text-uppercase"
@@ -88,7 +116,7 @@ export const FLoginForm = () => {
                     </button>
                   </div>
 
-                  <Link className="d-block text-center mt-2 small smalltext" to="/fsignup">
+                  <Link className="d-block text-center mt-2 small smalltext" to="/signup">
                     Haven't an account? Register
                   </Link>
 

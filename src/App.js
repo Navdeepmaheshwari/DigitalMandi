@@ -1,10 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { FSignUpForm } from './Components/farmer forms/FSignUpForm';
-import { FLoginForm } from './Components/farmer forms/FLoginForm';
+import { SignUpForm } from './Components/forms/SignUpForm';
+import { LoginForm } from './Components/forms/LoginForm';
 import {Navbar} from './Components/nav links/CNav';
-import { MLoginForm } from './Components/merchant form/MLoginForm';
-import { MSignUpForm } from './Components/merchant form/MSignUpForm';
+
 import {Hero} from './Components/hero-section/CHero';
 import { Dashboard } from './Components/Dashboard/Dashboard';
 
@@ -22,17 +21,11 @@ function App() {
               <Route exact path="/about">
                 
               </Route>
-              <Route exact path="/flogin">
-              <FLoginForm/>
+              <Route exact path="/login">
+              <LoginForm/>
               </Route>
-              <Route exact path="/fsignup">
-              <FSignUpForm/>
-              </Route>
-              <Route exact path="/msignup">
-              <MSignUpForm/>
-              </Route>
-              <Route exact path="/mlogin">
-              <MLoginForm/>
+              <Route exact path="/signup">
+              <SignUpForm/>
               </Route>
               <Route exact path="/dashboard">
               <Dashboard/>
