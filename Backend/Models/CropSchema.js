@@ -21,6 +21,9 @@ const CropSchema = new Schema({
     type: Number,
     required: true,
   },
+  image:{
+    type:String,
+  },
   merchant: {
     type: mongoose.Schema.Types.ObjectId,
     default: "62407b088b7a6eff168a9123",
@@ -33,6 +36,10 @@ const CropSchema = new Schema({
   price: {
     type: Number,
     default: "0",
+  },
+  date:{
+    type: Date,
+    default: Date.now
   },
 });
 const Crop = mongoose.model("crop", CropSchema, "CropData");
