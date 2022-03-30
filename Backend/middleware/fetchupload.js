@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 const Farmer = require("../Models/FarmerSchema");
-
+const path= require('path');
+const multer=require('multer');
 
 const fetchfarmer = async (req, res, next) => {
     // Get the user from the jwt token and add id to req object
@@ -31,7 +32,33 @@ const fetchfarmer = async (req, res, next) => {
     }
 
 }
+var storage = multer.diskStorage({
+    destination:function(req,file,cb){
+        cb(null,'images/')
+    },
+    filename: function(req,file,cb){
+        let ext =  path.extname(file.originalname)
+        cb(null,Date.now()+ext)
+    }
+})
 
+var upload =multer({
+    storage:storage,
+    filefilter :function(req,file,callback){
+        if(
+            file.mimetype == "image/png" ||
+            file.mimetype == "image/jpg"
+        ){
+            callback(null,true)
+        }else{
+            res.status(401).send({ error: "Please upload jpg or png file" })
+            callback(null,false)
+        }
+    },
+    limits:{
+        filesize:1024*1024*2
+    }
+})
 
-
-module.exports = fetchfarmer;
+const fetchupload={fetchfarmer,upload}
+module.exports = fetchupload;

@@ -10,7 +10,7 @@ connectToMongo();
 
 const app = express();
 const port = 8000;
-
+app.use(express.static('images'));
 app.use(express.json());
 //Available Routes
 app.use("/api/farmer", farmerRoute);

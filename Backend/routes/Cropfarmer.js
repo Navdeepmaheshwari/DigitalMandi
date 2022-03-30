@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const fetchfarmer = require('../middleware/fetchfarmer');
+const fetchupload = require('../middleware/fetchupload');
 const { body, validationResult } = require('express-validator');
 const CropSchema = require('../models/CropSchema');
 
 //Route 1: Adding crop as farmer  POST "/api/sell/farmer/addcrop"
 
-router.post('/addcrop', fetchfarmer, [
+router.post('/addcrop', [fetchupload.fetchfarmer, fetchupload.upload.single('image')] , [
     body('cropName', 'Enter a valid title').isLength({ min: 2 }),
     body('address', 'Address must be atleast 5 characters').isLength({ min: 5 }),
     body('market', 'Enter a valid market').isLength({ min: 2 }),
@@ -22,7 +23,11 @@ router.post('/addcrop', fetchfarmer, [
             const crop = new CropSchema({
                 cropName, address, market, weight, user: req.user.id
             })
-            console.log("Crop detail recieved Successful");
+            if(req.file){
+                crop.image = req.file.path
+                console.log("image received")
+            }
+            console.log("Crop detail received Successful");
             const savedNote = await crop.save()
 
             res.json(savedNote)
