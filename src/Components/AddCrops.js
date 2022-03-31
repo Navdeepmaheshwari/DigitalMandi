@@ -9,7 +9,7 @@ const Addnote = () => {
   const [crop, setCrop] = useState({
     name: "",
     address: "",
-    plot: "",
+    plotno: "",
     weight: "",
     market: "",
     image: "",
@@ -20,10 +20,10 @@ const Addnote = () => {
     addCrop(
       crop.name,
       crop.address,
-      crop.plot,
+      crop.plotno,
       crop.weight,
       crop.market,
-      crop.image
+      // crop.image
     );
   };
   const onChange = (e) => {
@@ -68,12 +68,12 @@ const Addnote = () => {
                     type="text"
                     onChange={onChange}
                     className="form-control"
-                    id="plot"
-                    name="plot"
-                    value={crop.plot}
+                    id="plotno"
+                    name="plotno"
+                    value={crop.plotno}
                     placeholder="name@example.com"
                   />
-                  <label htmlFor="plot">Plot No.</label>
+                  <label htmlFor="plotno">Plot No.</label>
                 </div>
 
                 <div className="form-floating mb-3">
@@ -93,7 +93,7 @@ const Addnote = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label class="my-3 me-3 mx-2" for="market">
+                  <label className="my-3 me-3 mx-2" htmlFor="market">
                     Select Market :
                   </label>
                   <select
@@ -102,35 +102,36 @@ const Addnote = () => {
                     name="market"
                     value={crop.market}
                     onChange={onChange}
-                    class="custom-select my-1 mr-sm-2"
+                    className="custom-select my-1 mr-sm-2"
                   >
                     <option >Choose...</option>
-                    <option value="farmer">Delhi</option>
-                    <option value="merchant">Ahmedabad</option>
-                    <option value="merchant">Noida</option>
-                    <option value="merchant">Udaipur</option>
-                    <option value="merchant">Surat</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Udaipur">Udaipur</option>
+                    <option value="Surat">Surat</option>
                   </select>
                 </div>
 
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text mx-2" id="inputGroupFileAddon01">
+                <div className="input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text mx-2" id="inputGroupFileAddon01">
                       Crop Image :
                     </span>
                   </div>
-                  <div class="custom-file">
+                  <div className="custom-file">
                     <input
                       type="file"
-                      class="custom-file-input"
+                      className="custom-file-input"
                       id="image"
                       name="image"
+                      enctype="multipart/form-data"
                       value={crop.image}
                       onChange={onChange}
                       aria-describedby="inputGroupFileAddon01"
                     />
-                    <label class="custom-file-label" for="image">
-                      {/* Choose file */}
+                    <label className="custom-file-label" for="image">
+                      
                     </label>
                   </div>
                 </div>
