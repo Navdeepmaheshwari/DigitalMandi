@@ -1,31 +1,40 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-import "./fdasboard.module.css"
+import React from "react";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "./fdashboard.css";
 export const FDashboard = () => {
+  let location = useLocation();
+  useEffect(() => {}, [location]);
   return (
-    <>
-    <div className=" d-flex justify-content-center my-5 text-center">
-        {/* <div className="">
-
-        <h1 className="my-5">Welcome to Farmer Dashboard</h1>
-        <h3 className='my-5'>Login Successful</h3>
-        <button className="btn btn-success">
-           <Link  to="/addcrop">Add New Crop</Link>     
-              </button>
-        </div> */}
-   
-    <div class="d-flex flex-row bd-highlight bg ">
-  <div class="p-2 bd-highlight flex-fill"><button className="btn btn-success text-white">
-           <Link className='text-white' to="/addcrop">Add New Crop</Link>     
-              </button></div>
-  <div class="p-2 bd-highlight flex-fill"><button className="btn btn-success text-white">
-           <Link className='text-white' to="/">Recent Activity</Link>     
-              </button></div>
-  <div class="p-2 bd-highlight flex-fill"><button className="btn btn-success text-white">
-           <Link className='text-white' to="/">Dashboard</Link>     
-              </button></div>
-</div> </div>
-    </>
-  )
-}
-
+    <div className="main_div">
+      <div className="dashboard_main">
+        <div id="one">
+          <Link
+            className={`Link ${
+              location.pathname === "/addcrop" ? "active" : " "
+            }`}
+            to="/addcrop"
+          >
+            Add Crop
+          </Link>
+        </div>
+        <div id="two">
+          {" "}
+          <Link className={`Link ${
+              location.pathname === "/current" ? "active" : " "
+            }`} to="/current">
+            Current{" "}
+          </Link>{" "}
+        </div>
+        <div id="three">
+          {" "}
+          <Link className={`Link ${
+              location.pathname === "/fdashboard" ? "active" : " "
+            }`} to="/fdashboard">
+            Dashboard
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
