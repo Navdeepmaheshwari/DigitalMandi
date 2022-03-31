@@ -1,0 +1,13 @@
+.imgBorderRad {
+    border-top-left-radius: calc(2.25rem - 1px);
+    border-top-right-radius: calc(2.25rem - 1px);
+}
+
+.alignCard {
+    left: 0;
+    width: 100%;
+}
+
+.width100 {
+    width:100%;
+}
