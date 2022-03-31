@@ -17,6 +17,10 @@ const CropSchema = new Schema({
     type: String,
     required: true,
   },
+  plotno:{
+    type:Number,
+    required:true,
+  },
   weight: {
     type: Number,
     required: true,

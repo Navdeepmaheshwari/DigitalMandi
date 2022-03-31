@@ -44,7 +44,7 @@ var storage = multer.diskStorage({
 
 var upload =multer({
     storage:storage,
-    filefilter :function(req,file,callback){
+    /* filefilter :function(req,file,callback){
         if(
             file.mimetype == "image/png" ||
             file.mimetype == "image/jpg"
@@ -54,10 +54,18 @@ var upload =multer({
             res.status(401).send({ error: "Please upload jpg or png file" })
             callback(null,false)
         }
-    },
-    limits:{
-        filesize:1024*1024*2
-    }
+    }, */
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+          cb(null, true);
+        } else {
+          cb(null, false);
+          
+           return cb('Only .png, .jpg and .jpeg format allowed!')
+        }
+      },
+     
+    limits : {fileSize : 2090000}
 })
 
 const fetchupload={fetchfarmer,upload}
