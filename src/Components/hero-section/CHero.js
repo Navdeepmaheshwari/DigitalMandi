@@ -15,10 +15,10 @@ export const Hero = () => {
             <span className="highlight">BEST PRICE</span>
           </p>
           <button
-            className="btn btn-lg fw-bold text-uppercase ctaButton"
+            className="btn btn-lg fw-bold  ctaButton"
             type="submit"
             >
-            <Link to="/login" className="joinbtn">JOIN US</Link>
+            {!localStorage.getItem("token")?(<Link to="/login" className="joinbtn">JOIN US</Link>):(<Link to="/" className="joinbtn">Welcome to Mandi</Link>)}
           </button>
         </div>
       </div>

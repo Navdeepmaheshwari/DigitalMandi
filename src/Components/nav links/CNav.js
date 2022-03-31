@@ -3,11 +3,11 @@ import "./CNav.css";
 import { useEffect } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 export const Navbar = () => {
-  let history=useHistory();
-const handleLogout =()=>{
-  localStorage.removeItem("token");
-  history.push("/login")
-}
+  let history = useHistory();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    history.push("/login");
+  };
 
   let location = useLocation();
   useEffect(() => {}, [location]);
@@ -31,7 +31,7 @@ const handleLogout =()=>{
           className="collapse navbar-collapse d-flex flex-row-reverse"
           id="navbarNavAltMarkup"
         >
-          <div className="navbar-nav d-flex gap-5">
+          <div className="navbar-nav d-flex gap-4">
             <Link
               className={`nav-item nav-link text-white  ${
                 location.pathname === "/" ? "act" : " "
@@ -48,12 +48,43 @@ const handleLogout =()=>{
             >
               About Us
             </Link>
-            {!localStorage.getItem("token") ?<form className="my-2">
-           <Link className="btn btn-success mx-1" to="/login" role="button">Login</Link>
-           <Link className="btn btn-success mx-3" to="/signup" role="button">Signup</Link>
-            </form> :<button onClick={handleLogout} className="btn btn-success"> Logout</button>}
-           
-          </div> 
+
+            {!localStorage.getItem("token") ? (
+              <form className="my-2">
+                <Link
+                  className="btn btn-success mx-1"
+                  to="/login"
+                  role="button"
+                >
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-success mx-3"
+                  to="/signup"
+                  role="button"
+                >
+                  Signup
+                </Link>
+              </form>
+            ) : (
+              <>
+                <Link className="my-2">
+                  <button onClick={handleLogout} className="btn btn-success">
+                    {" "}
+                    Logout
+                  </button>
+                </Link>
+                <Link
+                  className={`nav-item nav-link text-white  ${
+                    location.pathname === "/fdashboard" ? "act" : " "
+                  }`}
+                  to="/fdashboard"
+                >
+                  Dashboard
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </nav>
