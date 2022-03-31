@@ -13,12 +13,14 @@ router.post('/addcrop', [fetchupload.fetchfarmer, fetchupload.upload.single('ima
     body('market', 'Enter a valid market').isLength({ min: 2 }),
     body('plotno', 'Enter a valid plot No.').isLength({ min: 1 }),
     body('weight', 'Enter a valid weight').isLength({ min: 1 }),], async (req, res) => {
+        let success = false;
         try {
             const { cropName, address, market,plotno, weight } = req.body;
 
             // If there are errors, return Bad request and the errors
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
+                success=false;
                 return res.status(400).json({ errors: errors.array() });
             }
             const crop = new CropSchema({
@@ -30,10 +32,11 @@ router.post('/addcrop', [fetchupload.fetchfarmer, fetchupload.upload.single('ima
             }
             console.log("Crop detail received Successful");
             const savedNote = await crop.save()
-
+            success = true;
             res.json(savedNote)
 
         } catch (error) {
+            success=false
             console.error(error.message);
             res.status(500).send("Internal Server Error");
         }

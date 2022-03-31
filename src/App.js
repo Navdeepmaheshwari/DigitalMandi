@@ -9,6 +9,8 @@ import { FDashboard } from "./Components/Dashboard/FDashboard";
 import { MDashboard } from "./Components/Dashboard/MDashboard";
 import Addnote from "./Components/AddCrops";
 import CropState from "./Context/Crops/CropState";
+import { Card } from "./Components/card/Ccard";
+import Notes from "./Components/Crops";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
               </Route>
               <Route exact path="/fdashboard">
                 <FDashboard />
+                <Card/>
+                {/* <Notes/> */}
               </Route>
               <Route exact path="/mdashboard">
                 <MDashboard />

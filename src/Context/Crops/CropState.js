@@ -1,15 +1,18 @@
 import react from "react";
 import NoteContext from "./CropContext";
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-const NoteState = (props) => {
-  const host = "http://localhost:5000";
-  const initialnotes = [];
-  const [notes, setNotes] = useState(initialnotes);
 
+const NoteState = (props) => {
+  // const host = "http://localhost:8000";
+  const initialnotes = [];
+  const [crops, setCrops] = useState(initialnotes);
+  let history = useHistory();
   //Get All Notes
-  const getNotes = async () => {
+  const getCrops = async () => {
     //API
-    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+    const response = await fetch("", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -20,26 +23,33 @@ const NoteState = (props) => {
     // const json= response.json(); // parses JSON response into native JavaScript objects
     const json = await response.json();
     console.log(json);
-    setNotes(json);
+    setCrops(json);
   };
 
   //Add New Note
-  const addCrop = async (title, description, tag) => {
+  const addCrop = async (name, address, plotno, weight, market,image) => {
     //API
-    const response = await fetch(`${host}/api/notes/addnote`, {
+    const response = await fetch("/api/sell/farmer/addcrop", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         'Accept':'application/json',
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFmZDUwNzMxNzRjYWMyMDlkZWE4ZDdhIn0sImlhdCI6MTY0Mzk5NTAzOH0.Vkb6w1A1mLyGi5Bo-_tG_xh6-m-tfupLGDqb7DSe56c",
+        "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MmNkNmJlY2EyZWMxYjdkOTM3NGIzIn0sImlhdCI6MTY0ODc0MDI1N30.x9bKGsXjNv7-5Mrm0x_ekrxen97ao_nMJDdSORf0lzY"
+  
+          ,
       },
 
-      body: JSON.stringify(title, description, tag), // body data type must match "Content-Type" header
+      body: JSON.stringify(name, address, plotno, weight, market), // body data type must match "Content-Type" header
     });
-    const note= await response.json(); // parses JSON response into native JavaScript objects
-
-    console.log('adding new note');
+    const crop= await response.json(); // parses JSON response into native JavaScript objects
+    if(crop.success){
+      window.alert("New Crop Added Successfull");
+      history.push("/fdashboard");
+    }
+    else{
+      window.alert("Failed");
+      history.push("/addcrop");
+    }
     
     // const note = {
     //   _id: "6207771315f6d8891d409859",
@@ -51,49 +61,49 @@ const NoteState = (props) => {
     //   __v: 0,
     // };
 
-    setNotes(notes.concat(note));
+    setCrops(crops.concat(crop));
   };
 
   //Delete Note
   const deleteNote = async (id) => {
     //API
     //API
-    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+    const response = await fetch(`/api/notes/deletenote/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFmZDUwNzMxNzRjYWMyMDlkZWE4ZDdhIn0sImlhdCI6MTY0Mzk5NTAzOH0.Vkb6w1A1mLyGi5Bo-_tG_xh6-m-tfupLGDqb7DSe56c",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MmNkNmJlY2EyZWMxYjdkOTM3NGIzIn0sImlhdCI6MTY0ODc0MDI1N30.x9bKGsXjNv7-5Mrm0x_ekrxen97ao_nMJDdSORf0lzY",
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
     const json = await response.json();
     console.log(json);
-    // setNotes(json);
+    // setCrops(json);
     console.log("delete note with id" + id);
-    const newNotes = notes.filter((note) => {
+    const newNotes = crops.filter((note) => {
       return note._id !== id;
     });
-    setNotes(newNotes);
+    setCrops(newNotes);
   };
 
   //Update
   const editNote = (id, title, description, tag) => {
     //API
-    const response = fetch(`${host}/api/notes/updatenote/${id}`, {
+    const response = fetch(`/api/notes/updatenote/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFmZDUwNzMxNzRjYWMyMDlkZWE4ZDdhIn0sImlhdCI6MTY0Mzk5NTAzOH0.Vkb6w1A1mLyGi5Bo-_tG_xh6-m-tfupLGDqb7DSe56c",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MmNkNmJlY2EyZWMxYjdkOTM3NGIzIn0sImlhdCI6MTY0ODc0MDI1N30.x9bKGsXjNv7-5Mrm0x_ekrxen97ao_nMJDdSORf0lzY",
       },
 
       body: JSON.stringify(title, description, tag), // body data type must match "Content-Type" header
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
 
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    for (let index = 0; index < crops.length; index++) {
+      const element = crops[index];
       if (element._id === id) {
         element.title = title;
         element.description = description;
@@ -103,7 +113,7 @@ const NoteState = (props) => {
   };
   return (
     <NoteContext.Provider
-      value={{ notes, setNotes, addCrop, deleteNote, editNote, getNotes }}
+      value={{ crops, setCrops, addCrop, deleteNote, editNote, getCrops }}
     >
       {props.children}
     </NoteContext.Provider>
