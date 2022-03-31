@@ -13,7 +13,7 @@ export const Navbar = () => {
   useEffect(() => {}, [location]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
+    <nav className="navbar navbar-expand-lg navbar-light bg-transparent my-2">
       <div className="container">
         {/* <Link className="navbar-brand" to="/">D-Mandi</Link> */}
         <button
@@ -68,12 +68,6 @@ export const Navbar = () => {
               </form>
             ) : (
               <>
-                <Link className="my-2">
-                  <button onClick={handleLogout} className="btn btn-success">
-                    {" "}
-                    Logout
-                  </button>
-                </Link>
                 <Link
                   className={`nav-item nav-link text-white  ${
                     location.pathname === "/fdashboard" ? "act" : " "
@@ -81,6 +75,12 @@ export const Navbar = () => {
                   to="/fdashboard"
                 >
                   Dashboard
+                </Link>
+                <Link className="my-2">
+                  <button onClick={handleLogout} className="btn btn-success">
+                    {" "}
+                    Logout
+                  </button>
                 </Link>
               </>
             )}

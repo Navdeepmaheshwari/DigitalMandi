@@ -91,7 +91,7 @@ export const LoginForm = () => {
                     <label htmlFor="password">Password</label>
                   </div>
                   <div className="mb-3">
-                    <label class="my-3 me-3" for="role">
+                    <label class="my-3 me-3 mx-2" for="role">
                       Role :
                     </label>
                     <select

@@ -1,8 +1,9 @@
 .card{
-  left: 53%;
+  /* left: %; */
+  margin: 0 auto;
     width: 60%;
     /* background-color: rgba(0, 0, 0, 0.363); */
-    background-color: #FFFFFF;
+    background-color: #fffffff1;
     border-radius: 35px;
 }
 .card-title{

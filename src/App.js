@@ -17,7 +17,7 @@ function App() {
         <Router>
           <Navbar />
           {/* <Alert/> */}
-          <div className="container">
+          <div className="">
             <Switch>
               <Route exact path="/">
                 <Hero />
@@ -36,6 +36,7 @@ function App() {
                 <MDashboard />
               </Route>
               <Route exact path="/addcrop">
+                <FDashboard/>
                 <Addnote />
               </Route>
             </Switch>

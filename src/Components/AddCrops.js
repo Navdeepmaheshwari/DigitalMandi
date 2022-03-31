@@ -93,7 +93,7 @@ const Addnote = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label class="my-3 me-3" for="market">
+                  <label class="my-3 me-3 mx-2" for="market">
                     Select Market :
                   </label>
                   <select
@@ -115,7 +115,7 @@ const Addnote = () => {
 
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">
+                    <span class="input-group-text mx-2" id="inputGroupFileAddon01">
                       Crop Image :
                     </span>
                   </div>
