@@ -13,6 +13,11 @@ a {
     color:white;
 }
 
+a::hover {
+    background: orange;
+    padding: 1em 1em;
+}
+
 .btn{
     margin-left: 20px;
     /* margin-top: 10px; */

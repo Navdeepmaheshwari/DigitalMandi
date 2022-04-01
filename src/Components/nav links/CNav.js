@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import "./CNav.css";
 import { useEffect } from "react";
-import {Link,useLocation, useHistory } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 
 
 
@@ -71,6 +71,7 @@ const Overlay = styled.div`
   width: 100vw;
   background: #1c2022;
   transition: height 0.4s ease-in-out;
+  z-index:200;
 
   @media (min-width: 769px) {
     display: none;
@@ -106,22 +107,21 @@ const Navbar = () => {
 
 
   let location = useLocation();
-  useEffect(() => {}, [location]);
+  useEffect(() => { }, [location]);
 
   return (
     <>
- 
+
       <Nav className="pad-y">
-    
+
         <Logo><span className="text-greenyellow mb-0">digital</span>mandi</Logo>
         <Menu>
           <Item>
 
 
-          <Link
-              className={`${
-                location.pathname === "/" ? "act" : " "
-              }`}
+            <Link
+              className={`${location.pathname === "/" ? "act" : " "
+                }`}
               to="/"
             >
               Home
@@ -130,10 +130,9 @@ const Navbar = () => {
           </Item>
 
           <Item>
-          <Link
-              className={`${
-                location.pathname === "/about" ? "act" : " "
-              }`}
+            <Link
+              className={`${location.pathname === "/about" ? "act" : " "
+                }`}
               to="/about"
             >
               About Us
@@ -142,12 +141,11 @@ const Navbar = () => {
           </Item>
 
           {!localStorage.getItem("token") ? (
-              <>
-                <Item>
+            <>
+              <Item>
                 <Link
                   className={
-                    `${
-                      location.pathname === "/login" ? "act": " "
+                    `${location.pathname === "/login" ? "act" : " "
                     }`
                   }
                   to="/login"
@@ -155,12 +153,11 @@ const Navbar = () => {
                 >
                   Login
                 </Link>
-                </Item>
-                <Item>
+              </Item>
+              <Item>
                 <Link
                   className={
-                    `${
-                      location.pathname === "/signup" ? "act": " "
+                    `${location.pathname === "/signup" ? "act" : " "
                     }`
                   }
                   to="/signup"
@@ -168,125 +165,119 @@ const Navbar = () => {
                 >
                   Signup
                 </Link>
-                </Item>
-              </>
-            ) : (
-              <>
+              </Item>
+            </>
+          ) : (
+            <>
               <Item>
                 <Link
-                  className={` ${
-                    location.pathname === "/fdashboard" ? "act" : " "
-                  }`}
+                  className={` ${location.pathname === "/fdashboard" ? "act" : " "
+                    }`}
                   to="/fdashboard"
                 >
                   Dashboard
                 </Link>
-                </Item>
+              </Item>
 
-                <Item>
+              <Item>
                 <Link>
                   <button onClick={handleLogout} className="">
                     {" "}
                     Logout
                   </button>
                 </Link>
-                </Item>
-              </>
-            )}     
+              </Item>
+            </>
+          )}
 
-          
+
         </Menu>
         <NavIcon onClick={() => toggleNav(!toggle)}>
           <Line open={toggle} />
           <Line open={toggle} />
           <Line open={toggle} />
-          
+
         </NavIcon>
       </Nav>
       <Overlay open={toggle}>
         <OverlayMenu open={toggle}>
-        <Item>
+          <Item>
 
 
-<Link
-    className={`${
-      location.pathname === "/" ? "act" : " "
-    }`}
-    to="/"
-  >
-    Home
-  </Link>
+            <Link
+              className={`${location.pathname === "/" ? "act" : " "
+                }`}
+              to="/"
+            >
+              Home
+            </Link>
 
-</Item>
+          </Item>
 
-<Item>
-<Link
-    className={`${
-      location.pathname === "/about" ? "act" : " "
-    }`}
-    to="/about"
-  >
-    About Us
-  </Link>
+          <Item>
+            <Link
+              className={`${location.pathname === "/about" ? "act" : " "
+                }`}
+              to="/about"
+            >
+              About Us
+            </Link>
 
-</Item>
+          </Item>
 
-{!localStorage.getItem("token") ? (
-    <>
-      <Item>
-      <Link
-        className={`${
-          location.pathname === "/login" ? "act": " "
-        }`}
-        to="/login"
-        role="button"
-      >
-        Login
-      </Link>
-      </Item>
-      <Item>
-      <Link
-        className={`${
-          location.pathname === "/signup" ? "act": " "
-        }`}
-        to="/signup"
-        role="button"
-      >
-        Signup
-      </Link>
-      </Item>
-    </>
-  ) : (
-    <>
-    <Item>
-      <Link
-        className={`  ${
-          location.pathname === "/fdashboard" ? "act" : " "
-        }`}
-        to="/fdashboard"
-      >
-        Dashboard
-      </Link>
-      </Item>
+          {!localStorage.getItem("token") ? (
+            <>
+              <Item>
+                <Link
+                  className={`${location.pathname === "/login" ? "act" : " "
+                    }`}
+                  to="/login"
+                  role="button"
+                >
+                  Login
+                </Link>
+              </Item>
+              <Item>
+                <Link
+                  className={`${location.pathname === "/signup" ? "act" : " "
+                    }`}
+                  to="/signup"
+                  role="button"
+                >
+                  Signup
+                </Link>
+              </Item>
+            </>
+          ) : (
+            <>
+              <Item>
+                <Link
+                  className={`  ${location.pathname === "/fdashboard" ? "act" : " "
+                    }`}
+                  to="/fdashboard"
+                >
+                  Dashboard
+                </Link>
+              </Item>
 
-      <Item>
-      <Link>
-        <button onClick={handleLogout} className="">
-          {" "}
-          Logout
-        </button>
-      </Link>
-      </Item>
-    </>
-  )}     
+              <Item>
+                <Link>
+                  <button onClick={handleLogout} className="">
+                    {" "}
+                    Logout
+                  </button>
+                </Link>
+              </Item>
+            </>
+          )}
 
 
         </OverlayMenu>
       </Overlay>
-     
-   
+
+
     </>
   );
 };
 
-export {Navbar}
+export { Navbar }
