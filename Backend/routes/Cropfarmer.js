@@ -11,8 +11,8 @@ router.post('/addcrop', [fetchupload.fetchfarmer, fetchupload.upload.single('ima
     body('cropName', 'Enter a valid title').isLength({ min: 2 }),
     body('address', 'Address must be atleast 5 characters').isLength({ min: 5 }),
     body('market', 'Enter a valid market').isLength({ min: 2 }),
-    body('plotno', 'Enter a valid plot No.').isLength({ min: 1 }),
-    body('weight', 'Enter a valid weight').isLength({ min: 1 }),], async (req, res) => {
+    
+    ], async (req, res) => {
         let success = false;
         try {
             const { cropName, address, market,plotno, weight } = req.body;
@@ -38,7 +38,7 @@ router.post('/addcrop', [fetchupload.fetchfarmer, fetchupload.upload.single('ima
         } catch (error) {
             success=false
             console.error(error.message);
-            res.status(500).send("Internal Server Error");
+            res.status(500).send("Internal Server Error me hu don");
         }
     })
 

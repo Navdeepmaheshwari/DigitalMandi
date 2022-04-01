@@ -181,7 +181,7 @@ const Navbar = () => {
 
               <Item>
                 <Link>
-                  <button onClick={handleLogout} className="">
+                  <button onClick={handleLogout} className="btn btn-success">
                     {" "}
                     Logout
                   </button>
