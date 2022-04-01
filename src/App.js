@@ -11,6 +11,7 @@ import Addnote from "./Components/AddCrops";
 import CropState from "./Context/Crops/CropState";
 import { Card } from "./Components/card/Ccard";
 import Notes from "./Components/Crops";
+import { Header } from "./Components/Header";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Router>
           <Navbar />
           {/* <Alert/> */}
-          <div className="">
+          <div className="scrollbar scrollbar-black bordered-black square thin">
+            <div className="force-overflow"></div>
             <Switch>
               <Route exact path="/">
                 <Hero />
@@ -32,15 +34,18 @@ function App() {
                 <SignUpForm />
               </Route>
               <Route exact path="/fdashboard">
-                <FDashboard />
-                <Card/>
-                {/* <Notes/> */}
+                <Header/>
+               
+              </Route>
+              <Route exact path="/current">
+                <Header/>
+                <Notes/>
               </Route>
               <Route exact path="/mdashboard">
                 <MDashboard />
               </Route>
               <Route exact path="/addcrop">
-                <FDashboard/>
+                <Header/>
                 <Addnote />
               </Route>
             </Switch>

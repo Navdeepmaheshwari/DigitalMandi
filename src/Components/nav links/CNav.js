@@ -158,7 +158,7 @@ const Navbar = () => {
                 </Item>
                 <Item>
                 <Link
-                  className={
+                  className={ 
                     `${
                       location.pathname === "/signup" ? "act": " "
                     }`
@@ -185,7 +185,7 @@ const Navbar = () => {
 
                 <Item>
                 <Link>
-                  <button onClick={handleLogout} className="">
+                  <button onClick={handleLogout} className="btn btn-success">
                     {" "}
                     Logout
                   </button>
