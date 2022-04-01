@@ -12,6 +12,7 @@ import CropState from "./Context/Crops/CropState";
 import { Card } from "./Components/card/Ccard";
 import Notes from "./Components/Crops";
 import { Header } from "./Components/Header";
+import Realdashboard from "./Components/Realdash";
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
               </Route>
               <Route exact path="/fdashboard">
                 <Header/>
-               
+                 <Realdashboard/>
               </Route>
               <Route exact path="/current">
                 <Header/>

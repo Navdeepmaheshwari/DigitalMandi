@@ -10,23 +10,42 @@ const NoteState = (props) => {
   
   const initialnotes = [];
   const [crops, setCrops] = useState(initialnotes);
+  const [dashcrops, setdashCrops] = useState(initialnotes);
   let history = useHistory();
-  //Get All Notes
+  //Get All current crops
   const getCrops = async () => {
     //API
-    const response = await fetch("", {
+    const response = await fetch("/api/sell/farmer/current", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFmZDUwNzMxNzRjYWMyMDlkZWE4ZDdhIn0sImlhdCI6MTY0Mzk5NTAzOH0.Vkb6w1A1mLyGi5Bo-_tG_xh6-m-tfupLGDqb7DSe56c",
+        "auth":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0NWZlYmQ0NzZkYzgwZjAzYjBhMTFmIn0sImlhdCI6MTY0ODc5OTUyMH0.X4hvDau8-e2Dq33BQauqDzJjfRPJhMMTagwwPW02bu4",
+      },
+    });
+    // const json= response.json(); // parses JSON response into native JavaScript objects
+    const json = await response.json();
+    //console.log(json);
+    setCrops(json);
+  };
+
+  const getFdash = async () => {
+    //API
+    const response = await fetch("/api/sell/farmer/dashboard", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0NWZlYmQ0NzZkYzgwZjAzYjBhMTFmIn0sImlhdCI6MTY0ODc5OTUyMH0.X4hvDau8-e2Dq33BQauqDzJjfRPJhMMTagwwPW02bu4",
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
     const json = await response.json();
     console.log(json);
-    setCrops(json);
+    setdashCrops(json);
   };
+
+
 
   //Add New Note
   const addCrop = async (name, address, plotno, weight, market,image) => {
@@ -50,7 +69,7 @@ try {
   
 
   
-  if(resp.status == 200){
+  if(resp.status === 200){
     window.alert("New Crop Added Successfull");
     //history.push("/fdashboard");
   }
@@ -145,7 +164,7 @@ try {
   };
   return (
     <NoteContext.Provider
-      value={{ crops, setCrops, addCrop, deleteNote, editNote, getCrops }}
+      value={{ crops, dashcrops, setCrops, addCrop, getFdash , editNote, getCrops }}
     >
       {props.children}
     </NoteContext.Provider>
