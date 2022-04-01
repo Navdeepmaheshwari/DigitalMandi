@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import noteContext from "../Context/Crops/CropContext";
+// import cropimg from "../../Backend/images/"
 const Noteitem = (props) => {
   const context = useContext(noteContext);
   const { deleteNote } = context;
@@ -10,7 +11,7 @@ const Noteitem = (props) => {
   return (
     <div className="col-lg-4 mb-4">
     <div className="card alignCard">
-      <img src={crop.image} alt="" className="card-img-top " />
+      {/* <img src={`../../Backend/images/${crop.image}`} alt="" className="card-img-top " /> */}
       <div className="card-body">
         <h5 className="card-title mb-3">{crop.name}</h5>
 
