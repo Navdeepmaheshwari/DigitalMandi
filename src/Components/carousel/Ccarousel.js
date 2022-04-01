@@ -32,7 +32,7 @@ export const  Carousel = ()=> {
         <p>Transparent bidding mechanism and large market will give farmers best price</p>
         <div className='slider-btn'>
           <button className="btn btn-1">Our Services</button>
-          <button className="btn btn-2">Get a Quote</button>
+      <button className="btn btn-2">Get a Quote</button>
         </div>
       </div>
     </div>

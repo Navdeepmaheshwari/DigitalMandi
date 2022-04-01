@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fetchmerchant = require("../middleware/fetchmerchant");
 const { body, validationResult } = require("express-validator");
-const CropSchema = require("../models/CropSchema");
+const CropSchema = require("../Models/CropSchema");
 
 //Route 1: Adding crop as farmer  POST "/api/buy/merchant/list"
 

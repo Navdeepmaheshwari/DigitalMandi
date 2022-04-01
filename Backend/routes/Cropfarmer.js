@@ -3,7 +3,7 @@ const router = express.Router();
 const fetchfarmer = require('../middleware/fetchfarmer');
 const fetchupload = require('../middleware/fetchupload');
 const { body, validationResult } = require('express-validator');
-const CropSchema = require('../models/CropSchema');
+const CropSchema = require('../Models/CropSchema');
 
 //Route 1: Adding crop as farmer  POST "/api/sell/farmer/addcrop"
 
