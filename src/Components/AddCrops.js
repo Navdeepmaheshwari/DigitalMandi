@@ -23,11 +23,17 @@ const Addnote = () => {
       crop.plotno,
       crop.weight,
       crop.market,
-      // crop.image
+       crop.image
     );
   };
   const onChange = (e) => {
     setCrop({ ...crop, [e.target.name]: e.target.value });
+  };
+
+  const imageUpload = (event) => {
+    console.log(event.target.files[0]);
+    setCrop({ ...crop, image: event.target.files[0] })
+    //console.log(crop.image.name);
   };
   return (
     <div className="container ">
@@ -65,7 +71,7 @@ const Addnote = () => {
                 </div>
                 <div className="form-floating mb-3">
                   <input
-                    type="text"
+                    type="number"
                     onChange={onChange}
                     className="form-control"
                     id="plotno"
@@ -97,14 +103,13 @@ const Addnote = () => {
                     Select Market :
                   </label>
                   <select
-                  
                     id="market"
                     name="market"
                     value={crop.market}
                     onChange={onChange}
                     className="custom-select my-1 mr-sm-2"
                   >
-                    <option >Choose...</option>
+                    <option>Choose...</option>
                     <option value="Delhi">Delhi</option>
                     <option value="Ahmedabad">Ahmedabad</option>
                     <option value="Noida">Noida</option>
@@ -112,29 +117,12 @@ const Addnote = () => {
                     <option value="Surat">Surat</option>
                   </select>
                 </div>
-
-                <div className="input-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text mx-2" id="inputGroupFileAddon01">
-                      Crop Image :
-                    </span>
-                  </div>
-                  <div className="custom-file">
-                    <input
-                      type="file"
-                      className="custom-file-input"
-                      id="image"
-                      name="image"
-                      enctype="multipart/form-data"
-                      value={crop.image}
-                      onChange={onChange}
-                      aria-describedby="inputGroupFileAddon01"
-                    />
-                    <label className="custom-file-label" for="image">
-                      
-                    </label>
-                  </div>
+                <div className="mb-3">
+                <label className="form-label">Image</label>
+                 <input type="file" className="form-control" name="image" onChange={imageUpload}></input>
+                  
                 </div>
+               
 
                 <div className="d-grid mb-2">
                   <button

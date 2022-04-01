@@ -5,11 +5,15 @@ const farmerRoute = require("./routes/Farmer");
 const merchantRoute = require("./routes/Merchant");
 const cropfarmerRoute =require("./routes/Cropfarmer");
 const cropmerchantRoute =require("./routes/Cropmerchant");
+const bodyParser = require("body-parser")
+
+
 
 connectToMongo();
 
 const app = express();
 const port = 8000;
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('images'));
 app.use(express.json());
 //Available Routes

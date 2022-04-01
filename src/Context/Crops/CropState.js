@@ -3,9 +3,11 @@ import NoteContext from "./CropContext";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const NoteState = (props) => {
   // const host = "http://localhost:8000";
+  
   const initialnotes = [];
   const [crops, setCrops] = useState(initialnotes);
   let history = useHistory();
@@ -28,18 +30,48 @@ const NoteState = (props) => {
 
   //Add New Note
   const addCrop = async (name, address, plotno, weight, market,image) => {
+    let url = "http://localhost:3000/api/sell/farmer/addcrop";
     //API
-    const response = await fetch("/api/sell/farmer/addcrop", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        'Accept':'application/json',
-        "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MmNkNmJlY2EyZWMxYjdkOTM3NGIzIn0sImlhdCI6MTY0ODc0MDI1N30.x9bKGsXjNv7-5Mrm0x_ekrxen97ao_nMJDdSORf0lzY"
+    console.log(image,"nameeee:",image.name)
+    const formdata =new FormData();
+    formdata.append('image',image,image.name)
+    formdata.append('cropName',name)
+    formdata.append('address',address)
+    formdata.append('market',market)
+    formdata.append('weight',weight)
+    formdata.append('plotno',plotno)
+try {
+  let resp= await axios.post(url,formdata,{
+    headers: {
+    "Content-Type": "multipart/form-data",
+        
+        "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0NWZlYmQ0NzZkYzgwZjAzYjBhMTFmIn0sImlhdCI6MTY0ODc5OTUyMH0.X4hvDau8-e2Dq33BQauqDzJjfRPJhMMTagwwPW02bu4"
+  }})
   
-          ,
+
+  
+  if(resp.status == 200){
+    window.alert("New Crop Added Successfull");
+    //history.push("/fdashboard");
+  }
+  
+} catch (error) {
+  window.alert("Failed");
+  console.log(error);
+  
+}
+
+    /* const response = await fetch("/api/sell/farmer/addcrop", {
+      method: "POST",
+      body: formdata,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        
+        "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MGJhYmVkOGIyOGE5MzYzOWFjNDBhIn0sImlhdCI6MTY0ODc5NDM2NX0.qp7L1j6kSKa03_bqpbicP92AM9T4FIbpjcgn1TBy88o"
+          
       },
 
-      body: JSON.stringify(name, address, plotno, weight, market), // body data type must match "Content-Type" header
+       // body data type must match "Content-Type" header
     });
     const crop= await response.json(); // parses JSON response into native JavaScript objects
     if(crop.success){
@@ -49,7 +81,7 @@ const NoteState = (props) => {
     else{
       window.alert("Failed");
       history.push("/addcrop");
-    }
+    } */
     
     // const note = {
     //   _id: "6207771315f6d8891d409859",
@@ -61,7 +93,7 @@ const NoteState = (props) => {
     //   __v: 0,
     // };
 
-    setCrops(crops.concat(crop));
+    //setCrops(crops.concat(crop));
   };
 
   //Delete Note
@@ -95,7 +127,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MmNkNmJlY2EyZWMxYjdkOTM3NGIzIn0sImlhdCI6MTY0ODc0MDI1N30.x9bKGsXjNv7-5Mrm0x_ekrxen97ao_nMJDdSORf0lzY",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MGJhYmVkOGIyOGE5MzYzOWFjNDBhIn0sImlhdCI6MTY0ODc5NDExNX0.BwV2Elkki9FvAQs_znBjKuGLwIJygDyhsW7bVFSrdwU",
       },
 
       body: JSON.stringify(title, description, tag), // body data type must match "Content-Type" header
