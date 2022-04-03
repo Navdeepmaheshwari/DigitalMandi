@@ -46,7 +46,21 @@ router.post('/addcrop', [fetchupload.fetchfarmer, fetchupload.upload.single('ima
 //Route 2: Adding crop as farmer  POST "/api/sell/farmer/current"
 router.get('/current', fetchfarmer, async (req, res) => {
     try {
-        const notes = await CropSchema.find({ user: req.user.id , flag : "false", price :{ $ne: 0 }});
+        const notes = await CropSchema.find({ user: req.user.id , flag : "false" , price :{ $ne: 0 } });
+        notes.sort((a, b) => {
+            return b.price - a.price;
+        });
+        res.json(notes)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+})
+
+//Route 2: Adding crop as farmer  POST "/api/sell/farmer/forbid"
+router.get('/forbid', fetchfarmer, async (req, res) => {
+    try {
+        const notes = await CropSchema.find({ user: req.user.id , flag : "false", price : "0" });
         notes.sort((a, b) => {
             return b.price - a.price;
         });

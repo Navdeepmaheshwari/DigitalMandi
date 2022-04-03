@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Dashboard/fdashboard.css";
-export const Header = () => {
+export const Mheader = () => {
   let location = useLocation();
   useEffect(() => {}, [location]);
   return (
@@ -11,26 +11,26 @@ export const Header = () => {
         <div id="one">
           <Link
             className={`Link ${
-              location.pathname === "/addcrop" ? "active" : " "
+              location.pathname === "/buycrop" ? "active" : " "
             }`}
-            to="/addcrop"
+            to="/buycrop"
           >
-            Add Crop
+            Buy Crop
           </Link>
         </div>
         <div id="two">
           {" "}
           <Link className={`Link ${
-              location.pathname === "/current" ? "active" : " "
-            }`} to="/current">
-            Current{" "}
+              location.pathname === "/mcurrent" ? "active" : " "
+            }`} to="/mcurrent">
+             Current Bids{" "}
           </Link>{" "}
         </div>
         <div id="three">
           {" "}
           <Link className={`Link ${
-              location.pathname === "/farmerdashboard" ? "active" : " "
-            }`} to="/farmerdashboard">
+              location.pathname === "/merchantdashboard" ? "active" : " "
+            }`} to="/merchantdashboard">
             Dashboard
           </Link>
         </div>

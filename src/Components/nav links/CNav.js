@@ -96,12 +96,20 @@ const OverlayMenu = styled.ul`
     margin: 50px 0px;
   }
 `;
-
+/* const role =localStorage.getItem('role');
+let r;
+if(role==="farmer"){
+  r="f";
+}else if(role === "merchant"){
+  r="m";
+} */
+console.log(localStorage.getItem('role'))
 const Navbar = () => {
   const [toggle, toggleNav] = useState(false);
   let history = useHistory();
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     history.push("/login");
   };
 
@@ -171,9 +179,9 @@ const Navbar = () => {
             <>
               <Item>
                 <Link
-                  className={` ${location.pathname === "/fdashboard" ? "act" : " "
+                  className={` ${location.pathname === `/${localStorage.getItem('role')}dashboard" ? "act" : " `
                     }`}
-                  to="/fdashboard"
+                  to={`/${localStorage.getItem('role')}dashboard`}
                 >
                   Dashboard
                 </Link>
@@ -207,7 +215,7 @@ const Navbar = () => {
             <Link
               className={`${location.pathname === "/" ? "act" : " "
                 }`}
-              to="/"
+              to="/" onClick={() => toggleNav(!toggle)}
             >
               Home
             </Link>
@@ -218,8 +226,9 @@ const Navbar = () => {
             <Link
               className={`${location.pathname === "/about" ? "act" : " "
                 }`}
-              to="/about"
+              to="/about" onClick={() => toggleNav(!toggle)}
             >
+              
               About Us
             </Link>
 
@@ -231,8 +240,8 @@ const Navbar = () => {
                 <Link
                   className={`${location.pathname === "/login" ? "act" : " "
                     }`}
-                  to="/login"
-                  role="button"
+                  to="/login" onClick={() => toggleNav(!toggle)}
+                  role="button" 
                 >
                   Login
                 </Link>
@@ -241,8 +250,8 @@ const Navbar = () => {
                 <Link
                   className={`${location.pathname === "/signup" ? "act" : " "
                     }`}
-                  to="/signup"
-                  role="button"
+                  to="/signup" onClick={() => toggleNav(!toggle)}
+                  role="button" 
                 >
                   Signup
                 </Link>
@@ -252,17 +261,17 @@ const Navbar = () => {
             <>
               <Item>
                 <Link
-                  className={`  ${location.pathname === "/fdashboard" ? "act" : " "
-                    }`}
-                  to="/fdashboard"
-                >
-                  Dashboard
+                 className={` ${location.pathname === `/${localStorage.getItem('role')}dashboard" ? "act" : " `
+                }`}
+              to={`/${localStorage.getItem('role')}dashboard`} onClick={() => toggleNav(!toggle)}
+            >
+              Dashboard
                 </Link>
               </Item>
 
               <Item>
                 <Link>
-                  <button onClick={handleLogout} className="">
+                  <button /* onClick={handleLogout} */ onClick={() => {toggleNav(!toggle); handleLogout();}} className="">
                     {" "}
                     Logout
                   </button>

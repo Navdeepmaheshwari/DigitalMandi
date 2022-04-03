@@ -1,7 +1,7 @@
 import react from "react";
 import NoteContext from "./CropContext";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 import { useState } from "react";
 import axios from "axios";
 
@@ -11,6 +11,7 @@ const NoteState = (props) => {
   const initialnotes = [];
   const [crops, setCrops] = useState(initialnotes);
   const [dashcrops, setdashCrops] = useState(initialnotes);
+  const [forbidcrops, setforbidCrops] = useState(initialnotes);
   let history = useHistory();
   //Get All current crops
   const getCrops = async () => {
@@ -20,7 +21,7 @@ const NoteState = (props) => {
       headers: {
         "Content-Type": "application/json",
         "auth":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0NWZlYmQ0NzZkYzgwZjAzYjBhMTFmIn0sImlhdCI6MTY0ODc5OTUyMH0.X4hvDau8-e2Dq33BQauqDzJjfRPJhMMTagwwPW02bu4",
+        localStorage.getItem('token'),
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
@@ -29,18 +30,35 @@ const NoteState = (props) => {
     setCrops(json);
   };
 
-  const getFdash = async () => {
+  const getforbidCrops = async () => {
     //API
-    const response = await fetch("/api/sell/farmer/dashboard", {
+    const response = await fetch("/api/sell/farmer/forbid", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
         "auth":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0NWZlYmQ0NzZkYzgwZjAzYjBhMTFmIn0sImlhdCI6MTY0ODc5OTUyMH0.X4hvDau8-e2Dq33BQauqDzJjfRPJhMMTagwwPW02bu4",
+        localStorage.getItem('token'),
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
     const json = await response.json();
+    console.log(json);
+    setforbidCrops(json);
+  };
+
+  const getFdash = async () => {
+    //API
+   
+    const response = await fetch("/api/sell/farmer/dashboard", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth":localStorage.getItem('token'),
+      },
+    });
+    // const json= response.json(); // parses JSON response into native JavaScript objects
+    const json = await response.json();
+    console.log(localStorage.getItem('token'));
     console.log(json);
     setdashCrops(json);
   };
@@ -64,7 +82,7 @@ try {
     headers: {
     "Content-Type": "multipart/form-data",
         
-        "auth": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0NWZlYmQ0NzZkYzgwZjAzYjBhMTFmIn0sImlhdCI6MTY0ODc5OTUyMH0.X4hvDau8-e2Dq33BQauqDzJjfRPJhMMTagwwPW02bu4"
+        "auth": localStorage.getItem('token'),
   }})
   
 
@@ -164,7 +182,7 @@ try {
   };
   return (
     <NoteContext.Provider
-      value={{ crops, dashcrops, setCrops, addCrop, getFdash , editNote, getCrops }}
+      value={{ crops, dashcrops,forbidcrops, setCrops, addCrop, getFdash, getforbidCrops, editNote, getCrops }}
     >
       {props.children}
     </NoteContext.Provider>

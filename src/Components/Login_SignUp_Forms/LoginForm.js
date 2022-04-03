@@ -37,16 +37,18 @@ export const LoginForm = () => {
       }),
     });
     const json = await res.json();
-    console.log(json);
+    console.log(json.authToken);
     if (json.success &&  role === "farmer") {
       // Save the auth token and redirect
-      localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("role", role);
+      localStorage.setItem("token", json.authToken);
       window.alert("Login Successfull");
       history.push("/fdashboard");
     }
     else if (json.success &&  role === "merchant") {
       // Save the auth token and redirect
-      localStorage.setItem("token", json.authtoken);
+      localStorage.setItem("role", role);
+      localStorage.setItem("token", json.authToken);
       window.alert("Login Successfull");
       history.push("/mdashboard");
     } 

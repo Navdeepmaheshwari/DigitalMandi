@@ -13,6 +13,7 @@ import { Card } from "./Components/card/Ccard";
 import Notes from "./Components/Crops";
 import { Header } from "./Components/Header";
 import Realdashboard from "./Components/Realdash";
+import { Mheader } from "./Components/Mheader";
 
 function App() {
   return (
@@ -34,20 +35,31 @@ function App() {
               <Route exact path="/signup">
                 <SignUpForm />
               </Route>
-              <Route exact path="/fdashboard">
+              <Route exact path="/farmerdashboard">
                 <Header/>
                  <Realdashboard/>
               </Route>
               <Route exact path="/current">
                 <Header/>
-                <Notes/>
+                 <Notes/> 
+                {/* <Card/> */}
               </Route>
-              <Route exact path="/mdashboard">
-                <MDashboard />
-              </Route>
+              
               <Route exact path="/addcrop">
                 <Header/>
                 <Addnote />
+              </Route>
+              <Route exact path="/merchantdashboard">
+                {/* <MDashboard /> */}
+                <Mheader/>
+              </Route>
+              <Route exact path="/mcurrent">
+                {/* <MDashboard /> */}
+                <Mheader/>
+              </Route>
+              <Route exact path="/buycrop">
+                {/* <MDashboard /> */}
+                <Mheader/>
               </Route>
             </Switch>
           </div>
