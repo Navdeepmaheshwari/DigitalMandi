@@ -19,7 +19,7 @@ const Realdashboard = () => {
       <div className="container">
         <div className="row">
           <h2 className="mb-5 text-white">Your All Crops</h2>
-          <div className="container mx-2">
+          <div className="container row mx-2">
             
              
             <button

@@ -25,7 +25,7 @@ const Notes = () => {
       <div className="container">
         <div className="row">
           <h2 className="mb-5 text-white">List of All Crops Available for bid</h2>
-          <div className="container mx-2">
+          <div className="container row mx-2">
             {/* <h5>{crops.length === 0 && "No Crop to Display"}</h5> */}
             {console.log(localStorage.getItem('role'))}
             <button

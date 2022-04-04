@@ -12,7 +12,7 @@ router.get(
   [body("market", "Please select the market").isLength({ min: 1 })],
   async (req, res) => {
     try {
-      const { market } = req.body;
+      const { market } = req.headers;
       const crops = await CropSchema.find({
         market: market,
         flag: "false",
@@ -57,7 +57,7 @@ router.post(
             "You have a already bid For This crop You can increase your bid from current section"
           );
       }
-      const { cropName, address, market, weight, user } = oldcrop;
+      const { cropName, address, market, weight, user,plotno,image } = oldcrop;
       // console.log(crop);
       console.log(req.user.id);
       const crop = new CropSchema({
@@ -66,6 +66,8 @@ router.post(
         market,
         weight,
         user,
+        image,
+        plotno,
         price: price,
         merchant: req.user.id,
       });

@@ -14,6 +14,7 @@ import Notes from "./Components/Crops";
 import { Header } from "./Components/Header";
 import Realdashboard from "./Components/Realdash";
 import { Mheader } from "./Components/Mheader";
+import Buycrop from "./Components/Buycrop";
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
               <Route exact path="/buycrop">
                 {/* <MDashboard /> */}
                 <Mheader/>
+                <Buycrop/>
               </Route>
             </Switch>
           </div>

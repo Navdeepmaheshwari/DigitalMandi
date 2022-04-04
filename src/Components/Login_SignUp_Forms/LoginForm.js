@@ -43,14 +43,14 @@ export const LoginForm = () => {
       localStorage.setItem("role", role);
       localStorage.setItem("token", json.authToken);
       window.alert("Login Successfull");
-      history.push("/fdashboard");
+      history.push("/farmerdashboard");
     }
     else if (json.success &&  role === "merchant") {
       // Save the auth token and redirect
       localStorage.setItem("role", role);
       localStorage.setItem("token", json.authToken);
       window.alert("Login Successfull");
-      history.push("/mdashboard");
+      history.push("/merchantdashboard");
     } 
     else {
       alert("Invalid credentials");

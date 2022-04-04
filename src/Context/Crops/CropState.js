@@ -12,6 +12,7 @@ const NoteState = (props) => {
   const [crops, setCrops] = useState(initialnotes);
   const [dashcrops, setdashCrops] = useState(initialnotes);
   const [forbidcrops, setforbidCrops] = useState(initialnotes);
+  const [getlist, setgetList] = useState(initialnotes);
   let history = useHistory();
   //Get All current crops
   const getCrops = async () => {
@@ -132,7 +133,23 @@ try {
 
     //setCrops(crops.concat(crop));
   };
-
+  const getlistMarket = async (market) => {
+    //API
+    const response = await fetch("/api/buy/merchant/list", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth":
+        localStorage.getItem('token'),
+        "market":market,
+      },
+      
+    });
+    // const json= response.json(); // parses JSON response into native JavaScript objects
+    const json = await response.json();
+    console.log(json);
+    setgetList(json);
+  };
   //Delete Note
   const deleteNote = async (id) => {
     //API
@@ -179,10 +196,16 @@ try {
         element.tag = tag;
       }
     }
+  
+    // ALL Merchant api calls.
+
+    
+
+
   };
   return (
     <NoteContext.Provider
-      value={{ crops, dashcrops,forbidcrops, setCrops, addCrop, getFdash, getforbidCrops, editNote, getCrops }}
+      value={{ crops, dashcrops,forbidcrops,getlist, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket, editNote, getCrops }}
     >
       {props.children}
     </NoteContext.Provider>
