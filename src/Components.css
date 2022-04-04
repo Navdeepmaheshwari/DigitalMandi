@@ -13,6 +13,7 @@
 }
 .smalltext{
   font-size: 1.1rem;
+  color: rgb(95, 95, 95);
   /* text-decoration: none; */
 }
   .btn-login {
@@ -34,3 +35,9 @@
     background-color: #0a4cdad5;
   }
   
+  @media (max-width:768px) {
+    .card{
+      width: 75%;
+      border-radius: 10px;
+    }
+  }

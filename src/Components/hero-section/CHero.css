@@ -34,7 +34,7 @@ margin-left:25%;
 .aboutapp{
 /* background-color: blue; */
 margin: 0rem auto;
-padding: 1rem 0;
+/* padding: 1rem 0; */
 }
 .about{
     font-size: 2rem;
@@ -64,7 +64,7 @@ padding: 1rem 0;
     width: 40%;
 }
 .smal{
-    width: 70%;
+    /* width: 90%; */
 }
 
 label {
@@ -88,7 +88,7 @@ label {
     /* background-color: #147B0B; */
 }
 .bodycolor{
-    width: 120%;
+    width: 100%;
     background-color: rgba(11, 27, 60, 0.539);
     /* padding: 2.5rem; */
     border-radius: 8px;
@@ -98,4 +98,8 @@ label {
     color: rgb(155, 155, 160);
     border-radius: 4px;
     background-color: rgba(11, 27, 60, 0.735);
+}
+.contactbody{
+    width: 90%;
+    margin: 0 auto;
 }

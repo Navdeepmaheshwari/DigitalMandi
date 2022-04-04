@@ -37,10 +37,10 @@ export const Hero = () => {
         
       <h1 className="about text-center">Contact Us:</h1>
         <div class="row mx-auto">
-          <div class="col-lg-10 ">
+          <div class="contactbody">
             <div class=" mt-2 bg-transparent">
               <div class="card-body bodycolor">
-                <div class="container containercolor">
+                <div class=" containercolor">
                   <form id="contact-form" role="form">
                     <div class="controls">
                       <div class="row">
@@ -126,9 +126,14 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="footer">
-        HEllo
-      </div>
+      <footer class="bg-dark text-secondary text-center text-lg-start mt-4">
+  {/* <!-- Copyright --> */}
+  <div class="text-center p-3 ">
+    © 2020 Copyright :
+    <Link class="text-dark text-white" to="/"> DigitalMandi.com</Link>
+  </div>
+  {/* <!-- Copyright --> */}
+</footer>
     </>
   );
 };
