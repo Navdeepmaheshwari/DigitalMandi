@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import noteContext from "../Context/Crops/CropContext";
 import "./addcrop.css";
+import BuyCard from "./BuyCard";
 import Noteitem from "./CropDetails";
 const Buycrop = () => {
   const context = useContext(noteContext);
@@ -37,7 +38,8 @@ const Buycrop = () => {
                   </select>
 
                   {getlist.map((crop) => {
-            return <Noteitem key={crop._id} crop={crop} />;
+            return <BuyCard key={crop._id} crop={crop} />;
+           
           })}
                    
           </div>

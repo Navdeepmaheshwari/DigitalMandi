@@ -1,13 +1,51 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext ,useState } from "react";
+import { useHistory } from "react-router-dom";
 import noteContext from "../Context/Crops/CropContext";
 // import cropimg from "../../Backend/images/"
-const Noteitem = (props) => {
+const BuyCard = (props) => {
   const context = useContext(noteContext);
-  const { deleteNote } = context;
+  const { bidCrop } = context;
+  const [value, setValue] = useState("");
+  let history = useHistory();
+  const { crop } = props;
+  const onChange= (e) =>{
+    
+    setValue(e.target.value)
+    console.log(e.target.value);
+ }
+ const handleClick = async ()=>{
+  /*    console.log(crop._id);
+     console.log(value); */
+     
+     /* bidCrop(crop._id,value);
+    
+     window.alert("jay shrre ram");
+     history.push("/merchantdashboard");  */
+     console.log(crop._id);
+     console.log(value);
+     const price=value;
+     const response = await fetch(`/api/buy/merchant/list/${crop._id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "auth":localStorage.getItem('token'),
+        },
+        body: JSON.stringify({price})
+      });
+  
+      const note = await response.json();
+      console.log(response.status);
+      if(response.status===200){
+        window.alert("Bid successfully");
+        history.push("/merchantdashboard");
+      }else{
+        window.alert(note);
+        history.push("/mcurrent");
+        setValue(0)
+      }
 
-  const { crop, updateNote } = props;
-
+ }
   return (
     //   <div className="col-lg-4 mb-4">
     //   <div className="card alignCard">
@@ -69,27 +107,27 @@ const Noteitem = (props) => {
               <p>
                 Plot No.: {crop.plotno} &emsp; &emsp; Net weight:{crop.weight}
               </p>
-              <p></p>
-
-              <p>Highest-bid: {crop.price}</p>
+              <p>Enter Bid Amount</p>
+              <input
+                    type="number"
+                     onChange={onChange}
+                    className="form-control mb-2"
+                   id="price"
+                    name="price"
+                    value={value}
+                    placeholder="00"
+                  />
+                 
+            
+              
             </div>
-            <ul class="postcard__tagbox">
-            <li class="tag__item play green">
-                <a href="#">
-                  <i class=""></i> Chat With Merchant
-                </a>
-              </li>
-              <li class="tag__item play green">
-                <a href="#">
-                Accept Deal
-                </a>
-              </li>
-              <li class="tag__item play red">
-                <a href="#">
-                Delete
-                </a>
-              </li>
-            </ul>
+            <button
+                    className="btn btn-lg btn-success btn-login fw-bold text-uppercase"
+                    type="submit"
+                    onClick={handleClick}
+                  >
+                    Bid
+                  </button>
           </div>
         </article>
       </div>
@@ -97,4 +135,4 @@ const Noteitem = (props) => {
   );
 };
 
-export default Noteitem;
+export default BuyCard;
