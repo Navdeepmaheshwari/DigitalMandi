@@ -88,7 +88,7 @@ export const MLoginForm = () => {
                     </button>
                   </div>
 
-                  <Link className="d-block text-center mt-2 small smalltext" to="/msignup">
+                  <Link className="d-block text-center mt-2 small smalltext " to="/msignup">
                     Haven't an account? Register
                   </Link>
 

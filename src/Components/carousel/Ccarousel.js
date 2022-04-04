@@ -14,7 +14,7 @@ export const  Carousel = ()=> {
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active moreDarker">
-      <img src={kisanMandi} class="d-block w-100" alt="..." />
+      <img src={kisanMandi} class="d-block w-100 cimg" alt="..." />
       <div class="carousel-caption d-md-block">
         <h5>Huge Market</h5>
         <p>We have a network of 785 Mandies from all over India for you to choose from</p>
@@ -26,7 +26,7 @@ export const  Carousel = ()=> {
       </div>
     </div>
     <div class="carousel-item ">
-      <img src={lootFarmers} class="d-block w-100" alt="..." />
+      <img src={lootFarmers} class="d-block w-100 cimg" alt="..." />
       <div class="carousel-caption d-md-block">
         <h5>Best Price</h5>
         <p>Transparent bidding mechanism and large market will give farmers best price</p>
@@ -37,7 +37,7 @@ export const  Carousel = ()=> {
       </div>
     </div>
     <div class="carousel-item moreDarker">
-      <img src={farmerWithMoney} class="d-block w-100" alt="..." />
+      <img src={farmerWithMoney} class="d-block w-100 cimg" alt="..." />
       <div class="carousel-caption d-md-block">
         <h5>No Middlemen</h5>
         <p>Directly sell your products to the the firms. Now no more fooling the farmers</p>
