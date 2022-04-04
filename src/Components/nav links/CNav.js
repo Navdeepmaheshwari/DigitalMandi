@@ -30,8 +30,6 @@ list-style: none;
   display: flex;
   align-items:center;
   gap:4em;
-
-
   @media (max-width: 768px) {
     display: none;
   }
@@ -45,7 +43,6 @@ const NavIcon = styled.button`
   cursor: pointer;
   border: none;
   outline: none;
-
   @media (min-width: 769px) {
     display: none;
   }
@@ -59,7 +56,6 @@ const Line = styled.span`
   margin: 5px;
   background-color: #fff;
   transition: width 0.4s ease-in-out;
-
   :nth-child(2) {
     width: ${props => (props.open ? "40%" : "70%")};
   }
@@ -72,7 +68,6 @@ const Overlay = styled.div`
   background: #1c2022;
   transition: height 0.4s ease-in-out;
   z-index:200;
-
   @media (min-width: 769px) {
     display: none;
   }
@@ -84,14 +79,12 @@ const OverlayMenu = styled.ul`
   left: 50%;
   top: 45%;
   transform: translate(-50%, -50%);
-
   li {
     opacity: ${props => (props.open ? 1 : 0)};
     font-size: 25px;
     margin: 50px 0px;
     transition: opacity 0.4s ease-in-out;
   }
-
   li:nth-child(2) {
     margin: 50px 0px;
   }

@@ -15,8 +15,11 @@ a {
 
 a:hover {
     background: orange;
-    padding: 1em 1em;
+    padding: 0.75em 1.5em;
     color:white;
+    
+    
+    
 }
 
 .btn{
