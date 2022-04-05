@@ -73,7 +73,8 @@ const BuyCard = (props) => {
               <p>
                 Crop: {crop.cropName} 
               </p>
-              <p>Address: {crop.address} &emsp; &emsp; Market:{crop.market}</p>
+              <p>Address: {crop.address}</p>
+              <p> Market:{crop.market}</p>
 
               <p>
                 Plot No.: {crop.plotno} &emsp; &emsp; Net weight:{crop.weight}
