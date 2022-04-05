@@ -15,7 +15,8 @@ import { Header } from "./Components/Header";
 import Realdashboard from "./Components/Realdash";
 import { Mheader } from "./Components/Mheader";
 import Buycrop from "./Components/Buycrop";
-
+import { Footer } from "./Components/footer";
+import { About } from "./Components/About";
 function App() {
   return (
     <div>
@@ -29,7 +30,9 @@ function App() {
               <Route exact path="/">
                 <Hero />
               </Route>
-              <Route exact path="/about"></Route>
+              <Route exact path="/about">
+                <About/>
+              </Route>
               <Route exact path="/login">
                 <LoginForm />
               </Route>
@@ -65,6 +68,7 @@ function App() {
               </Route>
             </Switch>
           </div>
+          <Footer/>
         </Router>
       </CropState>
     </div>
