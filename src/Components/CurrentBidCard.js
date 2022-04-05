@@ -36,7 +36,7 @@ export const CurrentBidCard = () => {
                     class="fas fa-calendar-alt my-4 mx-1
                 "
                   ></i>
-                  {new Date(date).toGMTString()}
+                  {new Date(date).toUTCString()}
                 </time>
               </div>
 

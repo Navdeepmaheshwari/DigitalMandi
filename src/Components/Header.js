@@ -23,7 +23,7 @@ export const Header = () => {
           <Link className={`Link ${
               location.pathname === "/current" ? "active" : " "
             }`} to="/current">
-            current
+            Current
           </Link>
         </div>
         <div id="three">
