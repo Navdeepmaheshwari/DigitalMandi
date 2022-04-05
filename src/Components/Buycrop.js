@@ -18,8 +18,8 @@ const Buycrop = () => {
 
   return (
     <div className="container">
-        <div className="row">
-          <h2 className="mb-5 text-white">Select Market :</h2>
+        <div className="row container">
+          <h3 className=" text-white">Select Market :</h3>
           <div className="container row mx-2">
 
                   <select
@@ -27,7 +27,7 @@ const Buycrop = () => {
                     name="market"
                     value={market}
                     onChange={onChange} 
-                    className="custom-select my-1 mr-sm-2"
+                    className="custom-select my-1 mr-sm-2 selectinput"
                   >
                     <option>Choose...</option>
                     <option value="Delhi">Delhi</option>

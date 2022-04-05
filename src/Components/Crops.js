@@ -3,6 +3,7 @@ import { useContext } from "react";
 import noteContext from "../Context/Crops/CropContext";
 /* import Addnote from "./AddCrops"; */
 import Noteitem from "./CropDetails";
+import AfterBidCard from "./AfterBidCard";
 /* import { FDashboard } from "./Dashboard/FDashboard"; */
 const Notes = () => {
   const context = useContext(noteContext);
@@ -39,7 +40,7 @@ const Notes = () => {
 
                  
                   {forbidcrops.map((crop) => {
-            return <Noteitem key={crop._id} crop={crop} />;
+            return <Noteitem key={crop._id} crop={crop}  />;
           })}
              </div>
              {console.log(crops)}
@@ -53,7 +54,7 @@ const Notes = () => {
                   </button>
                   <div className="row">
                   {crops.map((crop) => {
-            return <Noteitem key={crop._id} crop={crop} />;
+            return <AfterBidCard key={crop._id} crop={crop} />;
           })}
                    </div>
           </div>
