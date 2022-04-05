@@ -19,15 +19,15 @@ export const Header = () => {
           </Link>
         </div>
         <div id="two">
-          {" "}
+          
           <Link className={`Link ${
               location.pathname === "/current" ? "active" : " "
             }`} to="/current">
-            Current{" "}
-          </Link>{" "}
+            current
+          </Link>
         </div>
         <div id="three">
-          {" "}
+          
           <Link className={`Link ${
               location.pathname === "/farmerdashboard" ? "active" : " "
             }`} to="/farmerdashboard">

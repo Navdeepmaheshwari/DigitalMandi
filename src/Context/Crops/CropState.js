@@ -90,7 +90,9 @@ try {
   
   if(resp.status === 200){
     window.alert("New Crop Added Successfull");
-    //history.push("/fdashboard");
+    
+    window.location.reload();
+    
   }
   
 } catch (error) {
@@ -150,6 +152,23 @@ try {
     console.log(json);
     setgetList(json);
   };
+
+  /* const bidCrop = async (id,price) => {
+    // TODO: API Call
+    // API Call 
+    const response = await fetch(`/api/buy/merchant/list/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "auth":localStorage.getItem('token'),
+      },
+      body: JSON.stringify({price})
+    });
+
+    const note = await response.json();
+    console.log(note);
+    
+  } */
   //Delete Note
   const deleteNote = async (id) => {
     //API
