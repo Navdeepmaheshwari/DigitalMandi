@@ -2,7 +2,8 @@ import React from 'react'
 import './Ccarousel.css';
 import kisanMandi from '../../images/Fruit_Mandi_by_PradeepGaurs_Shutterstock-887x592.jpg'
 // import famerTalkingOnPhone from '../../images/farmersonCall.webp';
-import lootFarmers from '../../images/lootingFarmers.png';
+// import lootFarmers from '../../images/lootingFarmers.png';
+import bidImg from '../../images/bidding.jpg'
 import farmerWithMoney from '../../images/young-indian-farmer-showing-money-talking-mobile-phone-home_75648-2651.webp'
 export const  Carousel = ()=> {
   return (
@@ -13,7 +14,7 @@ export const  Carousel = ()=> {
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active moreDarker">
+    <div class="carousel-item active">
       <img src={kisanMandi} class="d-block w-100 cimg" alt="..." />
       <div class="carousel-caption d-md-block">
         <h5>Huge Market</h5>
@@ -21,29 +22,29 @@ export const  Carousel = ()=> {
         
         <div className='slider-btn'>
           <button className="btn btn-1">Our Services</button>
-          <button className="btn btn-2">Get a Quote</button>
+          {/* <button className="btn btn-2">Get a Quote</button> */}
         </div>
       </div>
     </div>
     <div class="carousel-item ">
-      <img src={lootFarmers} class="d-block w-100 cimg" alt="..." />
+      <img src={bidImg} class="d-block w-100 cimg" alt="..." />
       <div class="carousel-caption d-md-block">
         <h5>Best Price</h5>
         <p>Transparent bidding mechanism and large market will give farmers best price</p>
         <div className='slider-btn'>
           <button className="btn btn-1">Our Services</button>
-      <button className="btn btn-2">Get a Quote</button>
+      {/* <button className="btn btn-2">Get a Quote</button> */}
         </div>
       </div>
     </div>
-    <div class="carousel-item moreDarker">
+    <div class="carousel-item">
       <img src={farmerWithMoney} class="d-block w-100 cimg" alt="..." />
       <div class="carousel-caption d-md-block">
         <h5>No Middlemen</h5>
         <p>Directly sell your products to the the firms. Now no more fooling the farmers</p>
         <div className='slider-btn'>
           <button className="btn btn-1">Our Services</button>
-          <button className="btn btn-2">Get a Quote</button>
+          {/* <button className="btn btn-2">Get a Quote</button> */}
         </div>
       </div>
     </div>
