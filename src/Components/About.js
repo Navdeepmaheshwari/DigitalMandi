@@ -1,15 +1,14 @@
 import React from "react";
-import { Navbar } from "../nav links/CNav";
-import "./CHero.css";
-import { Link } from "react-router-dom";
-import { Carousel } from "../carousel/Ccarousel";
-import image from "../../images/indian-farmer.webp";
 
-export const Hero = () => {
+import "./hero-section/CHero.css";
+import { Link } from "react-router-dom";
+
+import image from "../images/indian-farmer.webp";
+
+export const About = () => {
   return (
     <>
-    <Carousel/>
-    {/* <div className="aboutapp container ">
+      <div className="aboutapp container ">
         <h1 className="about">About This App :</h1>
         <div className="abouttext">
           <ol>
@@ -34,8 +33,7 @@ export const Hero = () => {
         </div>
       </div>
       <div class="container smal">
-        
-      <h1 className="about text-center">Contact Us:</h1>
+        <h1 className="about text-center">Contact Us:</h1>
         <div class="row mx-auto">
           <div class="contactbody">
             <div class=" mt-2 bg-transparent">
@@ -47,7 +45,9 @@ export const Hero = () => {
                         <div class="col-md-6 my-2">
                           <div class="form-group">
                             {" "}
-                            <label for="form_name" className="my-1">Firstname *</label>{" "}
+                            <label for="form_name" className="my-1">
+                              Firstname *
+                            </label>{" "}
                             <input
                               id="form_name"
                               type="text"
@@ -62,7 +62,9 @@ export const Hero = () => {
                         <div class="col-md-6 my-2">
                           <div class="form-group">
                             {" "}
-                            <label for="form_lastname" className="my-1">Lastname *</label>{" "}
+                            <label for="form_lastname" className="my-1">
+                              Lastname *
+                            </label>{" "}
                             <input
                               id="form_lastname"
                               type="text"
@@ -91,13 +93,14 @@ export const Hero = () => {
                             />{" "}
                           </div>
                         </div>
-                        
                       </div>
                       <div class="row">
                         <div class="col-md-12 my-2">
                           <div class="form-group">
                             {" "}
-                            <label for="form_message" className="my-1">Message *</label>{" "}
+                            <label for="form_message" className="my-1">
+                              Message *
+                            </label>{" "}
                             <textarea
                               id="form_message"
                               name="message"
@@ -125,11 +128,7 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-      </div> */}
-      
+      </div>
     </>
   );
 };
-    
-
-   
