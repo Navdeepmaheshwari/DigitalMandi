@@ -21,7 +21,7 @@ export const  Carousel = ()=> {
         <p>We have a network of 785 Mandies from all over India for you to choose from</p>
         
         <div className='slider-btn'>
-          <button className="btn btn-1">Our Services</button>
+          <button className="btn btn-1 my-3">Our Services</button>
           {/* <button className="btn btn-2">Get a Quote</button> */}
         </div>
       </div>
@@ -32,7 +32,7 @@ export const  Carousel = ()=> {
         <h5>Best Price</h5>
         <p>Transparent bidding mechanism and large market will give farmers best price</p>
         <div className='slider-btn'>
-          <button className="btn btn-1">Our Services</button>
+          <button className="btn btn-1 my-3">Our Services</button>
       {/* <button className="btn btn-2">Get a Quote</button> */}
         </div>
       </div>
@@ -43,7 +43,7 @@ export const  Carousel = ()=> {
         <h5>No Middlemen</h5>
         <p>Directly sell your products to the the firms. Now no more fooling the farmers</p>
         <div className='slider-btn'>
-          <button className="btn btn-1">Our Services</button>
+          <button className="btn btn-1 my-3">Our Services</button>
           {/* <button className="btn btn-2">Get a Quote</button> */}
         </div>
       </div>

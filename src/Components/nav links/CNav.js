@@ -55,7 +55,7 @@ const Line = styled.span`
   height: 3px;
   margin: 5px;
   background-color: #fff;
-  transition: width 0.4s ease-in-out;
+  transition: width 0.2s ease-in-out;
   :nth-child(2) {
     width: ${props => (props.open ? "40%" : "70%")};
   }
@@ -66,7 +66,7 @@ const Overlay = styled.div`
   height: ${props => (props.open ? "91vh" : 0)};
   width: 100%;
   background: #1c2022;
-  transition: height 0.4s ease-in-out;
+  transition: height 0.3s ease-in-out;
   z-index:200;
   @media (min-width: 769px) {
     display: none;
@@ -78,12 +78,18 @@ const OverlayMenu = styled.ul`
   position: absolute;
   left: 50%;
   top: 45%;
+
+
   transform: translate(-50%, -50%);
   li {
     opacity: ${props => (props.open ? 1 : 0)};
+    display: ${props => (props.open ? "" : "none")};
     font-size: 25px;
     margin: 50px 0px;
-    transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+ 
+
+    
   }
   li:nth-child(2) {
     margin: 50px 0px;
@@ -121,7 +127,7 @@ const Navbar = () => {
 
 
             <Link
-              className={`${location.pathname === "/" ? "act" : " "
+              className={`yellowHover ${location.pathname === "/" ? "act" : " "
                 }`}
               to="/"
             >
@@ -132,7 +138,7 @@ const Navbar = () => {
 
           <Item>
             <Link
-              className={`${location.pathname === "/about" ? "act" : " "
+              className={`yellowHover ${location.pathname === "/about" ? "act" : " "
                 }`}
               to="/about"
             >
@@ -146,7 +152,7 @@ const Navbar = () => {
               <Item>
                 <Link
                   className={
-                    `${location.pathname === "/login" ? "act" : " "
+                    `yellowHover ${location.pathname === "/login" ? "act" : " "
                     }`
                   }
                   to="/login"
@@ -158,7 +164,7 @@ const Navbar = () => {
               <Item>
                 <Link
                   className={
-                    `${location.pathname === "/signup" ? "act" : " "
+                    `yellowHover ${location.pathname === "/signup" ? "act" : " "
                     }`
                   }
                   to="/signup"
@@ -172,7 +178,7 @@ const Navbar = () => {
             <>
               <Item>
                 <Link
-                  className={` ${location.pathname === `/${localStorage.getItem('role')}dashboard" ? "act" : " `
+                  className={`yellowHover ${location.pathname === `/${localStorage.getItem('role')}dashboard" ? "act" : " `
                     }`}
                   to={`/${localStorage.getItem('role')}dashboard`}
                 >
@@ -182,7 +188,7 @@ const Navbar = () => {
 
               <Item>
                 <Link>
-                  <button onClick={handleLogout} className="btn btn-success">
+                  <button onClick={handleLogout} className="yellowHover">
                     {" "}
                     Logout
                   </button>
@@ -206,7 +212,7 @@ const Navbar = () => {
 
 
             <Link
-              className={`${location.pathname === "/" ? "act" : " "
+              className={`yellowHover ${location.pathname === "/" ? "act" : " "
                 }`}
               to="/" onClick={() => toggleNav(!toggle)}
             >
@@ -217,7 +223,7 @@ const Navbar = () => {
 
           <Item>
             <Link
-              className={`${location.pathname === "/about" ? "act" : " "
+              className={`yellowHover ${location.pathname === "/about" ? "act" : " "
                 }`}
               to="/about" onClick={() => toggleNav(!toggle)}
             >
@@ -231,7 +237,7 @@ const Navbar = () => {
             <>
               <Item>
                 <Link
-                  className={`${location.pathname === "/login" ? "act" : " "
+                  className={`yellowHover ${location.pathname === "/login" ? "act" : " "
                     }`}
                   to="/login" onClick={() => toggleNav(!toggle)}
                   role="button" 
@@ -241,7 +247,7 @@ const Navbar = () => {
               </Item>
               <Item>
                 <Link
-                  className={`${location.pathname === "/signup" ? "act" : " "
+                  className={`yellowHover ${location.pathname === "/signup" ? "act" : " "
                     }`}
                   to="/signup" onClick={() => toggleNav(!toggle)}
                   role="button" 
@@ -254,7 +260,7 @@ const Navbar = () => {
             <>
               <Item>
                 <Link
-                 className={` ${location.pathname === `/${localStorage.getItem('role')}dashboard" ? "act" : " `
+                 className={`yellowHover ${location.pathname === `/${localStorage.getItem('role')}dashboard" ? "act" : " `
                 }`}
               to={`/${localStorage.getItem('role')}dashboard`} onClick={() => toggleNav(!toggle)}
             >
@@ -264,7 +270,7 @@ const Navbar = () => {
 
               <Item>
                 <Link>
-                  <button /* onClick={handleLogout} */ onClick={() => {toggleNav(!toggle); handleLogout();}} className="">
+                  <button /* onClick={handleLogout} */ onClick={() => {toggleNav(!toggle); handleLogout();}} className="yellowHover">
                     {" "}
                     Logout
                   </button>
