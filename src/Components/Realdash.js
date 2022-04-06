@@ -3,6 +3,7 @@ import { useContext} from "react";
 import noteContext from "../Context/Crops/CropContext";
 
 import Noteitem from "./CropDetails";
+import { FarmerDash } from "./FarmerDash";
 
 const Realdashboard = () => {
   const context = useContext(noteContext);
@@ -18,7 +19,7 @@ const Realdashboard = () => {
     <>
       <div className="container">
         <div className="row">
-          <h2 className="mb-5 text-white">Your All Crops</h2>
+          <h2 className="mb-5 text-white">Your All Sold Crops</h2>
           <div className="container row mx-2">
             
              
@@ -31,9 +32,9 @@ const Realdashboard = () => {
                   </button>
 
                   {dashcrops.map((crop) => {
-            return <Noteitem key={crop._id} crop={crop} />;
+            return <FarmerDash key={crop._id} crop={crop} />;
           })}
-                   
+                
           </div>
          
         </div>
