@@ -4,7 +4,7 @@ import noteContext from "../Context/Crops/CropContext";
 // import cropimg from "../../Backend/images/"
 const Noteitem = (props) => {
   const context = useContext(noteContext);
-  const { deleteNote } = context;
+  const { deleteCrop } = context;
 
   const { crop, updateNote } = props;
   let date = crop.date;
@@ -51,24 +51,30 @@ const Noteitem = (props) => {
 
               <p>Highest-bid:{crop.price}</p>
             </div>
-            <ul class="postcard__tagbox">
-              {/* <li class="tag__item play green">
-                <a href="#">
-                  <i class=""></i> Chat With Merchant
-                </a>
-              </li> */}
+            <div className="btn-group">
+            <button type="button" class="btn btn-primary">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+           <span className="mx-2">Update</span> 
+            </button>
+            <button onClick={()=>{deleteCrop(crop._id)}} type="button" class="btn btn-danger ">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+           <span className="mx-2">Delete</span> 
+            </button>
+            </div>
+            {/* <ul class="postcard__tagbox">
+             
               <li class="tag__item play blue">
-                <a href="#">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update Details
-                </a>
+                
+                <i class="fa fa-pencil-square-o" aria-hidden="true"> Update Details</i>
+               
               </li>
               <li class="tag__item play red">
-                <a href="#">
-                  <i class="fa fa-trash" aria-hidden="true"></i> Delete
+                <a onClick={()=>{deleteCrop(crop._id)}}>
+                  <i class="fa fa-trash" aria-hidden="true" ></i> Delete
                 </a>
                 
               </li>
-            </ul>
+            </ul> */}
           </div>
         </article>
       </div>
