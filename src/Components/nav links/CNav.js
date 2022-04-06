@@ -187,11 +187,12 @@ const Navbar = () => {
               </Item>
 
               <Item>
-                <Link>
-                  <button onClick={handleLogout} className="yellowHover">
+                <Link onClick={handleLogout} className="yellowHover">
+                  Logout
+                  {/* <button onClick={handleLogout} className="yellowHover">
                     {" "}
                     Logout
-                  </button>
+                  </button> */}
                 </Link>
               </Item>
             </>
