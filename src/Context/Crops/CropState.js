@@ -170,15 +170,14 @@ try {
     
   } */
   //Delete Note
-  const deleteNote = async (id) => {
-    //API
-    //API
-    const response = await fetch(`/api/notes/deletenote/${id}`, {
+  const deleteCrop = async (id) => {
+   if(window.confirm("Are you Sure You Want to Delete")){
+    const response = await fetch(`/api/sell/farmer/deletecrop/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MmNkNmJlY2EyZWMxYjdkOTM3NGIzIn0sImlhdCI6MTY0ODc0MDI1N30.x9bKGsXjNv7-5Mrm0x_ekrxen97ao_nMJDdSORf0lzY",
+        "auth":
+        localStorage.getItem('token'),
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
@@ -186,11 +185,13 @@ try {
     console.log(json);
     // setCrops(json);
     console.log("delete note with id" + id);
-    const newNotes = crops.filter((note) => {
+    const newCrop = crops.filter((note) => {
       return note._id !== id;
     });
-    setCrops(newNotes);
-  };
+    setCrops(newCrop);
+    // window.alert("Crop Deleted Successfull");
+    window.location.reload();
+  }};
 
   //Update
   const editNote = (id, title, description, tag) => {
@@ -224,7 +225,7 @@ try {
   };
   return (
     <NoteContext.Provider
-      value={{ crops, dashcrops,forbidcrops,getlist, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket, editNote, getCrops }}
+      value={{ crops, dashcrops,forbidcrops,getlist, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket, editNote, getCrops , deleteCrop}}
     >
       {props.children}
     </NoteContext.Provider>
