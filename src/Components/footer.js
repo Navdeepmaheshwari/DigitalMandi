@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 export const Footer = () => {
   return (
     <>
-      <footer class="bg-dark text-secondary text-center text-lg-start mt-4">
+      <footer className="bg-dark text-secondary text-center text-lg-start mt-4">
         {/* <!-- Copyright --> */}
-        <div class="text-center p-3 ">
+        <div className="text-center p-3 ">
           © 2022 Copyright :
-          <Link class="text-dark text-white" to="/">
+          <Link className="text-dark text-white" to="/">
             {" "}
             DigitalMandi.com
           </Link>
