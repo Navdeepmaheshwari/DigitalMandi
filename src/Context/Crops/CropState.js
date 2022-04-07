@@ -13,6 +13,7 @@ const NoteState = (props) => {
   const [dashcrops, setdashCrops] = useState(initialnotes);
   const [forbidcrops, setforbidCrops] = useState(initialnotes);
   const [getlist, setgetList] = useState(initialnotes);
+  const [mcurrcrops, setmcurrCrops] = useState(initialnotes);
   let history = useHistory();
   //Get All current crops
   const getCrops = async () => {
@@ -159,6 +160,21 @@ const NoteState = (props) => {
     console.log(note);
     
   } */
+  const getmCurrent = async () => {
+    //API
+    const response = await fetch("/api/buy/merchant/current", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth":
+        localStorage.getItem('token'),
+      },
+    });
+    // const json= response.json(); // parses JSON response into native JavaScript objects
+    const json = await response.json();
+    //console.log(json);
+    setmcurrCrops(json);
+  };
   //Delete Note
   const deleteCrop = async (id) => {
     if (window.confirm("Are you Sure You Want to Delete")) {
@@ -212,6 +228,7 @@ const NoteState = (props) => {
   };
   return (
     <NoteContext.Provider
+<<<<<<< HEAD
       value={{
         crops,
         dashcrops,
@@ -226,6 +243,9 @@ const NoteState = (props) => {
         getCrops,
         deleteCrop,
       }}
+=======
+      value={{ crops, dashcrops,forbidcrops,getlist,mcurrcrops, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket,getmCurrent, editNote, getCrops }}
+>>>>>>> 5e22b3964a0b6b7c9144caab19bfee26ca045710
     >
       {props.children}
     </NoteContext.Provider>
