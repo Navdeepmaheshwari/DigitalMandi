@@ -16,7 +16,7 @@ router.get(
       const crops = await CropSchema.find({
         market: market,
         flag: "false",
-        /* price: 0, */
+         price: 0, 
       });
       res.json(crops);
     } catch (error) {
@@ -159,6 +159,27 @@ router.put('/cropbid/:id',fetchmerchant, async(req,res) =>{
 
       } */
       //console.log(crop);
+      const newcrop= await CropSchema.findByIdAndUpdate(req.params.id,{price:price,merchant: req.user.id});
+     
+      res.json("Your Bid order is received");
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal Server Error");
+  }
+
+})
+
+router.get('/highestprice/:id', async(req,res) =>{
+  try {
+      let crop = await CropSchema.findById(req.params.id);
+      
+      if (!crop) { return res.status(404).send("Not Found") }
+     
+    
+      if(crop.flag === true){
+          return res.status(208).json("Your crop is already sell");
+
+      } 
       const newcrop= await CropSchema.findByIdAndUpdate(req.params.id,{price:price,merchant: req.user.id});
      
       res.json("Your Bid order is received");

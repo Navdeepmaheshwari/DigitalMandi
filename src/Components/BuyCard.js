@@ -19,8 +19,8 @@ const BuyCard = (props) => {
     console.log(crop._id);
     console.log(value);
     const price = value;
-    const response = await fetch(`/api/buy/merchant/cropbid/${crop._id}`, {
-      method: "PUT",
+    const response = await fetch(`/api/buy/merchant/list/${crop._id}`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         auth: localStorage.getItem("token"),
