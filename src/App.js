@@ -17,6 +17,7 @@ import { Mheader } from "./Components/Mheader";
 import Buycrop from "./Components/Buycrop";
 import { Footer } from "./Components/footer";
 import { About } from "./Components/About";
+import Mcurrent from "./Components/Mcurrent";
 function App() {
   return (
     <div>
@@ -60,6 +61,7 @@ function App() {
               <Route exact path="/mcurrent">
                 {/* <MDashboard /> */}
                 <Mheader/>
+                <Mcurrent/>
               </Route>
               <Route exact path="/buycrop">
                 {/* <MDashboard /> */}

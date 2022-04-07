@@ -7,6 +7,7 @@ const BuyCard = (props) => {
   const context = useContext(noteContext);
   const { bidCrop } = context;
   const [value, setValue] = useState("");
+  const [high, setHigh] = useState("0");
   let history = useHistory();
   const { crop } = props;
   let date = crop.date;
@@ -32,13 +33,34 @@ const BuyCard = (props) => {
     console.log(response.status);
     if (response.status === 200) {
       window.alert("Bid successfully");
-      history.push("/merchantdashboard");
+      history.push("/mcurrent");
     } else {
       window.alert(note);
       history.push("/mcurrent");
       setValue(0);
     }
   };
+let highest;
+  const higheat =async ()=> {
+    const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
+    method: "GET",
+    
+  });
+  
+const rate = await resp.json();
+
+setHigh(rate.highest);
+
+  highest=rate;
+  if (resp.status !== 200) {
+    window.alert(rate);
+    history.push("/buycrop");
+  }
+};
+
+ higheat(); 
+/* console.log(rate.highest); */
+console.log(high);
   return (
     
     <section class="">
@@ -79,7 +101,8 @@ const BuyCard = (props) => {
               <p>
                 Plot No.: {crop.plotno} &emsp; &emsp; Net weight:{crop.weight}
               </p>
-              <p>Highest-bid: {crop.price}</p>
+              {console.log(high)}
+              <p>Highest-bid: {high}</p>
               <p>Enter Bid Amount:
               <input
                 type="number"

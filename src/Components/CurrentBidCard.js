@@ -3,17 +3,44 @@ import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import noteContext from "../Context/Crops/CropContext";
 
-export const CurrentBidCard = () => {
+export const CurrentBidCard = (props) => {
   const context = useContext(noteContext);
 
   const [value, setValue] = useState("");
   let history = useHistory();
-
+  const { crop } = props;
   let date = crop.date;
   const onChange = (e) => {
     setValue(e.target.value);
     console.log(e.target.value);
   };
+  const price = value;
+  const handleClick = async () => {
+   
+    console.log(crop._id);
+    console.log(value);
+    const price = value;
+    const response = await fetch(`/api/buy/merchant/cropbid/${crop._id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        auth: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ price }),
+    });
+
+    const note = await response.json();
+    console.log(response.status);
+    if (response.status === 200) {
+      window.alert("Bid successfully");
+      history.push("/mcurrent");
+    } else {
+      window.alert(note);
+      history.push("/mcurrent");
+      setValue(0);
+    }
+  };
+
   return (
     <>
       <section class="">

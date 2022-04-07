@@ -196,7 +196,7 @@ router.get('/highestprice/:id', async(req,res) =>{
            highest:high,
            lowest:low,
       }
-     console.log(rate.highest, rate.lowest);
+     /* console.log(rate.highest, rate.lowest); */
       res.json(rate);
   } catch (error) {
       console.error(error.message);
