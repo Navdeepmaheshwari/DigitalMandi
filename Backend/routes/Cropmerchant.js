@@ -168,21 +168,36 @@ router.put('/cropbid/:id',fetchmerchant, async(req,res) =>{
   }
 
 })
-
+//Route 6: Bid with higher price POST "/api/buy/merchant/highestprice/:id
 router.get('/highestprice/:id', async(req,res) =>{
   try {
-      let crop = await CropSchema.findById(req.params.id);
+      const crop = await CropSchema.findById(req.params.id);
       
       if (!crop) { return res.status(404).send("Not Found") }
+      
+      const { cropName, address, market, weight, user,plotno,image } = crop;
+      const crops = await CropSchema.find({
+        user,cropName,market,address,weight,plotno,image
+      });
      
-    
-      if(crop.flag === true){
-          return res.status(208).json("Your crop is already sell");
-
-      } 
-      const newcrop= await CropSchema.findByIdAndUpdate(req.params.id,{price:price,merchant: req.user.id});
-     
-      res.json("Your Bid order is received");
+      crops.sort((a, b) => {
+        return b.price - a.price;
+      });
+      let n=crops.length,low,high;
+      if(n==1){
+        low="No bid";
+        high="No Bid";
+      }else{
+        low=crops[n-2].price;
+        high=crops[0].price;
+      }
+      
+      let rate={
+           highest:high,
+           lowest:low,
+      }
+     console.log(rate.highest, rate.lowest);
+      res.json(rate);
   } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
