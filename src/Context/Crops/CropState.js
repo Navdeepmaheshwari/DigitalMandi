@@ -228,7 +228,7 @@ const NoteState = (props) => {
   };
   return (
     <NoteContext.Provider
-      value={{ crops, dashcrops,forbidcrops,getlist,mcurrcrops, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket,getmCurrent, editNote, getCrops }}
+      value={{ crops, dashcrops,forbidcrops,getlist,mcurrcrops, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket,getmCurrent, editCrop, getCrops, deleteCrop }}
     >
       {props.children}
     </NoteContext.Provider>
