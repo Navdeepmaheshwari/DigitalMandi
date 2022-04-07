@@ -145,27 +145,64 @@ router.put("/confirm/:id", fetchfarmer, async (req, res) => {
 //Route-5 Delete Crop  Delete "/api/sell/farmer/deletecrop/:id"
 
 router.delete("/deletecrop/:id", fetchfarmer, async (req, res) => {
-    let success =true;
+  let success = true;
   try {
-   
-      let crop = await CropSchema.findById(req.params.id);
-      if (!crop) {
-          success=false
-        return res.status(404).send("Crop Not Found");
-      }
-      if (crop.user.toString() !== req.user.id) {
-          success=false;
-        return res.status(401).send("Not Allowed to Delete");
-      }
-      crop = await CropSchema.findByIdAndDelete(req.params.id);
-      success=true
-      res.json({ Success: "Crop has been Deleted Successfully", crop: crop });
-      console.log("Crop has been Deleted Successfully");
-    
+    let crop = await CropSchema.findById(req.params.id);
+    if (!crop) {
+      success = false;
+      return res.status(404).send("Crop Not Found");
+    }
+    if (crop.user.toString() !== req.user.id) {
+      success = false;
+      return res.status(401).send("Not Allowed to Delete");
+    }
+    crop = await CropSchema.findByIdAndDelete(req.params.id);
+    success = true;
+    res.json({ Success: "Crop has been Deleted Successfully", crop: crop });
+    console.log("Crop has been Deleted Successfully");
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
   }
 });
-
+//Route-6  EditCrop
+router.put("/updatecrop/:id", fetchfarmer, async (req, res) => {
+  const { name, address, plotno, weight, market } = req.body;
+  try {
+    // Create New Note
+    const newCrop = {};
+    if (name) {
+      newCrop.name = name;
+    }
+    if (address) {
+      newCrop.address = address;
+    }
+    if (plotno) {
+      newCrop.plotno = plotno;
+    }
+    if (weight) {
+      newCrop.weight = weight;
+    }
+    if (market) {
+      newCrop.market = market;
+    }
+    //find the note
+    let crop = await CropSchema.findById(req.params.id);
+    if (!crop) {
+      return res.status(404).send("Not Found");
+    }
+    if (crop.user.toString() !== req.user.id) {
+      return res.status(401).send("Not Allowed");
+    }
+    crop = await CropSchema.findByIdAndUpdate(
+      req.params.id,
+      { $set: newCrop },
+      { new: true }
+    );
+    res.json({ crop });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Error Occured");
+  }
+});
 module.exports = router;

@@ -7,7 +7,7 @@ import axios from "axios";
 
 const NoteState = (props) => {
   // const host = "http://localhost:8000";
-  
+
   const initialnotes = [];
   const [crops, setCrops] = useState(initialnotes);
   const [dashcrops, setdashCrops] = useState(initialnotes);
@@ -22,8 +22,7 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth":
-        localStorage.getItem('token'),
+        auth: localStorage.getItem("token"),
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
@@ -38,8 +37,7 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth":
-        localStorage.getItem('token'),
+        auth: localStorage.getItem("token"),
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
@@ -50,57 +48,51 @@ const NoteState = (props) => {
 
   const getFdash = async () => {
     //API
-   
+
     const response = await fetch("/api/sell/farmer/dashboard", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth":localStorage.getItem('token'),
+        auth: localStorage.getItem("token"),
       },
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
     const json = await response.json();
-    console.log(localStorage.getItem('token'));
+    console.log(localStorage.getItem("token"));
     console.log(json);
     setdashCrops(json);
   };
 
-
-
   //Add New Note
-  const addCrop = async (name, address, plotno, weight, market,image) => {
+  const addCrop = async (name, address, plotno, weight, market, image) => {
     let url = "http://localhost:3000/api/sell/farmer/addcrop";
     //API
-    console.log(image,"nameeee:",image.name)
-    const formdata =new FormData();
-    formdata.append('image',image,image.name)
-    formdata.append('cropName',name)
-    formdata.append('address',address)
-    formdata.append('market',market)
-    formdata.append('weight',weight)
-    formdata.append('plotno',plotno)
-try {
-  let resp= await axios.post(url,formdata,{
-    headers: {
-    "Content-Type": "multipart/form-data",
-        
-        "auth": localStorage.getItem('token'),
-  }})
-  
+    console.log(image, "nameeee:", image.name);
+    const formdata = new FormData();
+    formdata.append("image", image, image.name);
+    formdata.append("cropName", name);
+    formdata.append("address", address);
+    formdata.append("market", market);
+    formdata.append("weight", weight);
+    formdata.append("plotno", plotno);
+    try {
+      let resp = await axios.post(url, formdata, {
+        headers: {
+          "Content-Type": "multipart/form-data",
 
-  
-  if(resp.status === 200){
-    window.alert("New Crop Added Successfull");
-    
-    window.location.reload();
-    
-  }
-  
-} catch (error) {
-  window.alert("Failed");
-  console.log(error);
-  
-}
+          auth: localStorage.getItem("token"),
+        },
+      });
+
+      if (resp.status === 200) {
+        window.alert("New Crop Added Successfull");
+
+        window.location.reload();
+      }
+    } catch (error) {
+      window.alert("Failed");
+      console.log(error);
+    }
 
     /* const response = await fetch("/api/sell/farmer/addcrop", {
       method: "POST",
@@ -123,7 +115,7 @@ try {
       window.alert("Failed");
       history.push("/addcrop");
     } */
-    
+
     // const note = {
     //   _id: "6207771315f6d8891d409859",
     //   user: "61fd5073174cac209dea8d7a",
@@ -142,11 +134,9 @@ try {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth":
-        localStorage.getItem('token'),
-        "market":market,
+        auth: localStorage.getItem("token"),
+        market: market,
       },
-      
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
     const json = await response.json();
@@ -187,57 +177,54 @@ try {
   };
   //Delete Note
   const deleteCrop = async (id) => {
-   if(window.confirm("Are you Sure You Want to Delete")){
-    const response = await fetch(`/api/sell/farmer/deletecrop/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "auth":
-        localStorage.getItem('token'),
-      },
-    });
-    // const json= response.json(); // parses JSON response into native JavaScript objects
-    const json = await response.json();
-    console.log(json);
-    // setCrops(json);
-    console.log("delete note with id" + id);
-    const newCrop = crops.filter((note) => {
-      return note._id !== id;
-    });
-    setCrops(newCrop);
-    // window.alert("Crop Deleted Successfull");
-    window.location.reload();
-  }};
+    if (window.confirm("Are you Sure You Want to Delete")) {
+      const response = await fetch(`/api/sell/farmer/deletecrop/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          auth: localStorage.getItem("token"),
+        },
+      });
+      // const json= response.json(); // parses JSON response into native JavaScript objects
+      const json = await response.json();
+      console.log(json);
+      // setCrops(json);
+      console.log("delete note with id" + id);
+      const newCrop = crops.filter((note) => {
+        return note._id !== id;
+      });
+      setCrops(newCrop);
+      // window.alert("Crop Deleted Successfull");
+      window.location.reload();
+    }
+  };
 
   //Update
-  const editNote = (id, title, description, tag) => {
+  const editCrop = (id, name, address, plotno, weight, market) => {
     //API
-    const response = fetch(`/api/notes/updatenote/${id}`, {
+    const response = fetch(`/api/sell/farmer/updatecrop/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI0MGJhYmVkOGIyOGE5MzYzOWFjNDBhIn0sImlhdCI6MTY0ODc5NDExNX0.BwV2Elkki9FvAQs_znBjKuGLwIJygDyhsW7bVFSrdwU",
+        auth: localStorage.getItem("token"),
       },
 
-      body: JSON.stringify(title, description, tag), // body data type must match "Content-Type" header
+      body: JSON.stringify(name, address, plotno, weight, market), // body data type must match "Content-Type" header
     });
     // const json= response.json(); // parses JSON response into native JavaScript objects
 
     for (let index = 0; index < crops.length; index++) {
       const element = crops[index];
       if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+        element.name = name;
+        element.address = address;
+        element.plotno = plotno;
+        element.weight = weight;
+        element.market = market;
       }
     }
-  
+
     // ALL Merchant api calls.
-
-    
-
-
   };
   return (
     <NoteContext.Provider

@@ -2,10 +2,11 @@
 
 
 body {
-    background: green !important;
+    /* background: green !important; */
 }
 
 .board {
+    margin: 2rem 0;
     display:block;
     width:100%;
     position:relative;

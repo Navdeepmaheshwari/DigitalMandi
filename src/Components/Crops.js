@@ -7,7 +7,7 @@ import AfterBidCard from "./AfterBidCard";
 /* import { FDashboard } from "./Dashboard/FDashboard"; */
 const Notes = () => {
   const context = useContext(noteContext);
-  const {crops,getCrops,forbidcrops,getforbidCrops}=context;
+  const {crops,getCrops,forbidcrops,getforbidCrops,editCrop}=context;
   // useEffect(() => {
   //   getCrops();
   //   //eslint-disable-next-line
@@ -20,6 +20,9 @@ const Notes = () => {
     e.preventDefault();
     getCrops();
   };
+  const updateNote = (currentNote) => {
+   
+}
   //const crop=crops[0];
   return (
     <>
@@ -40,7 +43,7 @@ const Notes = () => {
 
                  
                   {forbidcrops.map((crop) => {
-            return <Noteitem key={crop._id} crop={crop}  />;
+            return <Noteitem key={crop._id} crop={crop} updateNote={updateNote} />;
           })}
              </div>
              {console.log(crops)}
