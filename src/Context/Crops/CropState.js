@@ -228,24 +228,7 @@ const NoteState = (props) => {
   };
   return (
     <NoteContext.Provider
-<<<<<<< HEAD
-      value={{
-        crops,
-        dashcrops,
-        forbidcrops,
-        getlist,
-        setCrops,
-        addCrop,
-        getFdash,
-        getforbidCrops,
-        getlistMarket,
-        editCrop,
-        getCrops,
-        deleteCrop,
-      }}
-=======
       value={{ crops, dashcrops,forbidcrops,getlist,mcurrcrops, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket,getmCurrent, editNote, getCrops }}
->>>>>>> 5e22b3964a0b6b7c9144caab19bfee26ca045710
     >
       {props.children}
     </NoteContext.Provider>
