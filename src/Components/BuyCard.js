@@ -7,7 +7,7 @@ const BuyCard = (props) => {
   const context = useContext(noteContext);
   const { bidCrop } = context;
   const [value, setValue] = useState("");
-  const [high, setHigh] = useState("0");
+  const [high, setHigh] = useState("");
   let history = useHistory();
   const { crop } = props;
   let date = crop.date;

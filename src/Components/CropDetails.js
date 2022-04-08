@@ -11,7 +11,25 @@ const Noteitem = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { crop, updateNote } = props;
+  const [high, setHigh] = useState("");
   let date = crop.date;
+  const higheat =async ()=> {
+    const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
+    method: "GET",
+    
+  });
+  
+const rate = await resp.json();
+
+setHigh(rate.highest);
+
+  
+  if (resp.status !== 200) {
+    window.alert(rate);
+    
+  }
+};
+higheat();
   return (
     <section className="">
       <div className="container ">
@@ -45,7 +63,7 @@ const Noteitem = (props) => {
               <p>Plot No.:{crop.plotno}</p>
               <p>Net weight:{crop.weight}</p>
 
-              <p>Highest-bid:{crop.price}</p>
+              <p>Highest-bid:{high}</p>
             </div>
             <div className="btn-group">
               <button
