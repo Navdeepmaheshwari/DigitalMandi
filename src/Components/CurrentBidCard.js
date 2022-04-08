@@ -7,6 +7,7 @@ export const CurrentBidCard = (props) => {
   const context = useContext(noteContext);
 
   const [value, setValue] = useState("");
+  const [high, setHigh] = useState("0");
   let history = useHistory();
   const { crop } = props;
   let date = crop.date;
@@ -14,14 +15,14 @@ export const CurrentBidCard = (props) => {
     setValue(e.target.value);
     console.log(e.target.value);
   };
-  const price = value;
+ /*  const price = value; */
   const handleClick = async () => {
    
     console.log(crop._id);
     console.log(value);
     const price = value;
-    const response = await fetch(`/api/buy/merchant/cropbid/${crop._id}`, {
-      method: "POST",
+    const response = await fetch(`/api/buy/merchant/highbid/${crop._id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         auth: localStorage.getItem("token"),
@@ -33,13 +34,32 @@ export const CurrentBidCard = (props) => {
     console.log(response.status);
     if (response.status === 200) {
       window.alert("Bid successfully");
-      history.push("/mcurrent");
+      history.push("/merchantdashboard");
     } else {
       window.alert(note);
       history.push("/mcurrent");
       setValue(0);
     }
   };
+
+  const higheat =async ()=> {
+    const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
+    method: "GET",
+    
+  });
+  
+const rate = await resp.json();
+
+setHigh(rate.highest);
+
+  
+  if (resp.status !== 200) {
+    window.alert(rate);
+    history.push("/buycrop");
+  }
+};
+
+higheat();
 
   return (
     <>
@@ -76,6 +96,8 @@ export const CurrentBidCard = (props) => {
                 <p>
                   Plot No.: {crop.plotno} &emsp; &emsp; Net weight:{crop.weight}
                 </p>
+                <p>Highest Bid : {high}</p>
+                <p>Your Bid:{crop.price}</p>
                 <p>
                   Update Bid Amount:
                   <input
@@ -88,6 +110,7 @@ export const CurrentBidCard = (props) => {
                     // placeholder="00"
                   />
                 </p>
+                
               </div>
               <button
                 className="btn btn-lg btn-success btn-login fw-bold text-uppercase"

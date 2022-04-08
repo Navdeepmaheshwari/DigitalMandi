@@ -40,7 +40,7 @@ const BuyCard = (props) => {
       setValue(0);
     }
   };
-let highest;
+
   const higheat =async ()=> {
     const resp= await fetch(`/api/buy/merchant/highestprice/${crop._id}`, {
     method: "GET",
@@ -51,7 +51,7 @@ const rate = await resp.json();
 
 setHigh(rate.highest);
 
-  highest=rate;
+  
   if (resp.status !== 200) {
     window.alert(rate);
     history.push("/buycrop");

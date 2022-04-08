@@ -2,8 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import noteContext from "../Context/Crops/CropContext";
 
-import Noteitem from "./CropDetails";
-import AfterBidCard from "./AfterBidCard";
+
 import { CurrentBidCard } from "./CurrentBidCard";
 
 const Mcurrent = () => {
@@ -21,20 +20,20 @@ const Mcurrent = () => {
     <>
       <div className="container">
         <div className="row">
-          <h2 className="mb-5 text-white">List of All Crops Available for bid</h2>
+          {/* <h2 className="mb-5 text-white">List of All Crops Available for bid</h2> */}
           <div className="container row mx-2">
             {/* <h5>{crops.length === 0 && "No Crop to Display"}</h5> */}
             {console.log(localStorage.getItem('role'))}
             
                   
              
-             <h2 className="mb-5 text-white">List of bids for your Crops </h2>
+             <h2 className="mb-5 text-white">List of The crop on which you have bid </h2>
             <button
                     className="btn btn-lg btn-success btn-login fw-bold text-uppercase mb-5"
                     type="submit"
                     onClick={handleClick}
                   >
-                    Get details of current bid for your crop
+                    Get The List of your crop
                   </button>
                   <div className="row">
                   {mcurrcrops.map((crop) => {

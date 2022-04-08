@@ -14,6 +14,7 @@ const NoteState = (props) => {
   const [forbidcrops, setforbidCrops] = useState(initialnotes);
   const [getlist, setgetList] = useState(initialnotes);
   const [mcurrcrops, setmcurrCrops] = useState(initialnotes);
+  const [mdashcrops, setmdashCrops] = useState(initialnotes);
   let history = useHistory();
   //Get All current crops
   const getCrops = async () => {
@@ -198,7 +199,22 @@ const NoteState = (props) => {
       window.location.reload();
     }
   };
+  const getMdash = async () => {
+    //API
 
+    const response = await fetch("/api/buy/merchant/dashboard", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        auth: localStorage.getItem("token"),
+      },
+    });
+    // const json= response.json(); // parses JSON response into native JavaScript objects
+    const json = await response.json();
+    console.log(localStorage.getItem("token"));
+    console.log(json);
+    setmdashCrops(json);
+  };
   //Update
   const editCrop = (id, name, address, plotno, weight, market) => {
     //API
@@ -228,7 +244,7 @@ const NoteState = (props) => {
   };
   return (
     <NoteContext.Provider
-      value={{ crops, dashcrops,forbidcrops,getlist,mcurrcrops, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket,getmCurrent, editCrop,deleteCrop, getCrops }}
+      value={{ crops, dashcrops,forbidcrops,getlist,mcurrcrops,mdashcrops, setCrops, addCrop, getFdash, getforbidCrops,getlistMarket,getmCurrent, editCrop,deleteCrop, getCrops,getMdash }}
     >
       {props.children}
     </NoteContext.Provider>

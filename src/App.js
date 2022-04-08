@@ -18,6 +18,7 @@ import Buycrop from "./Components/Buycrop";
 import { Footer } from "./Components/footer";
 import { About } from "./Components/About";
 import Mcurrent from "./Components/Mcurrent";
+import Mdashboard from "./Components/Mdashboard";
 function App() {
   return (
     <div>
@@ -55,8 +56,8 @@ function App() {
                 <Addnote />
               </Route>
               <Route exact path="/merchantdashboard">
-                {/* <MDashboard /> */}
                 <Mheader/>
+               <Mdashboard/>
               </Route>
               <Route exact path="/mcurrent">
                 {/* <MDashboard /> */}
