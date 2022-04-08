@@ -3,12 +3,12 @@ import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import noteContext from "../Context/Crops/CropContext";
 
-export const FarmerDash = (props) => {
+export const MerchantDash = (props) => {
   const context = useContext(noteContext);
 
   const [value, setValue] = useState("");
   let history = useHistory();
-  const { crop, updateNote } = props;
+  const { crop } = props;
   let date = crop.date;
   const onChange = (e) => {
     setValue(e.target.value);
@@ -52,7 +52,7 @@ export const FarmerDash = (props) => {
                   }}
                 >
                   {" "}
-                  Merchant: {crop.merchant}
+                  Farmer: {crop.user}
                 </p>
                 <p
                   style={{
@@ -74,11 +74,12 @@ export const FarmerDash = (props) => {
                       style={{
                         color: "green",
                         fontSize: "25px",
-                        
+                        // border:"2px solid black",
+                        borderRadius:"500px",
                         "font-weight": "Bold",
                       }}
                     ></i>{" "}
-                    Succesfully Sold
+                    Succesfully Bought
                   </a>
                   <a
                     className="mx-3"

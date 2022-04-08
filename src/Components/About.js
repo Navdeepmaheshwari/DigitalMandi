@@ -13,17 +13,13 @@ export const About = () => {
         <div className="abouttext">
           <ol>
             <li>
-              We Provide The Appointment Facilities So that any one can book
-              their appointment, and also predict the the approx time it will
-              take for his turn
+              We Provide The  Facilities that Farmers can sell their Crops online through DigitalMandi.
             </li>
             <li>
-              We have the disease predictor so that any one can predict what
-              disease he/she might have.
+              We have also facility of live crop rates, so that any one can check the current rate of Crops.
             </li>
             <li>
-              We have also facility of personal talk, so that any one can chat
-              privately with doctors.
+              Farmer can also chat with Merchant regrading their Crops Bid, current price etc..
             </li>
           </ol>
 
