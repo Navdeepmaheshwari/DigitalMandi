@@ -3,6 +3,7 @@ const router = express.Router();
 const fetchmerchant = require("../middleware/fetchmerchant");
 const { body, validationResult } = require("express-validator");
 const CropSchema = require("../Models/CropSchema");
+const FarmerSchema = require("../Models/FarmerSchema")
 
 //Route 1: Adding crop as farmer  POST "/api/buy/merchant/list"
 
@@ -205,5 +206,26 @@ router.get('/highestprice/:id', async(req,res) =>{
   }
 
 })
+//Route 6: Bid with higher price POST "/api/buy/merchant/name/:id
+router.get('/mname/:id', async(req,res) =>{
+  try {
+     
+      const data = await FarmerSchema.findById(req.params.id);
+      
+      if (!data) { return res.status(404).send("Not Found") }
+      
+     const detail={
+       name:data.name,
+       phoneno:data.phoneNumber
+     }
+      
+      
+     /*  console.log(data) */
+      res.json(detail);
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal Server Error");
+  }
 
+})
 module.exports = router;

@@ -4,6 +4,7 @@ const fetchfarmer = require("../middleware/fetchfarmer");
 const fetchupload = require("../middleware/fetchupload");
 const { body, validationResult } = require("express-validator");
 const CropSchema = require("../Models/CropSchema");
+const MerchantSchema =require("../Models/MerchantSchema")
 
 //Route 1: Adding crop as farmer  POST "/api/sell/farmer/addcrop"
 
@@ -205,4 +206,26 @@ router.put("/updatecrop/:id", fetchfarmer, async (req, res) => {
     res.status(500).send("Internal Error Occured");
   }
 });
+
+router.get('/mname/:id', async(req,res) =>{
+  try {
+     console.log(req.params.id)
+      const data = await MerchantSchema.findById(req.params.id);
+      
+      if (!data) { return res.status(404).send("Not Found") }
+      
+     const detail={
+       name:data.name,
+       phoneno:data.phoneNumber
+     }
+      
+      
+       /* console.log(data) */
+      res.json(detail);
+  } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal Server Error");
+  }
+
+})
 module.exports = router;

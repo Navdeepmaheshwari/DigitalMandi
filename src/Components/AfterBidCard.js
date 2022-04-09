@@ -7,6 +7,8 @@ const AfterBidCard = (props) => {
   const context = useContext(noteContext);
   const { deleteNote } = context;
   const [high, setHigh] = useState("");
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
   let history = useHistory();
   const { crop } = props;
   /* const { crop, updateNote ,disply} = props; */
@@ -30,6 +32,23 @@ const AfterBidCard = (props) => {
     }
   };
   higheat();
+  const Detail =async ()=> {
+    const resp= await fetch(`/api/sell/farmer/mname/${crop.merchant}`, {
+    method: "GET",
+    
+  });
+  
+const rate = await resp.json();
+/* console.log(rate) */
+setName(rate.name);
+setNumber(rate.phoneno)
+  
+  if (resp.status !== 200) {
+    window.alert(rate);
+    history.push("/farmerdashboard");
+  }
+};
+Detail();
 
   const handledealClick = async ()=>{
     const response = await fetch(`/api/sell/farmer/confirm/${idd}`, {
@@ -95,9 +114,11 @@ const AfterBidCard = (props) => {
             </div>
             <ul class="postcard__tagbox">
             <li class="tag__item play blue">
-                <a href="#">
+                <a href={`https://api.whatsapp.com/send?phone=${number} `} target="_blank" rel="noreferrer">
                 <i class="fa fa-whatsapp" aria-hidden="true"></i> Chat with merchant 
                 </a>
+               {/*  <a href="https://api.whatsapp.com/send?phone=919795141300 " target="_blank" rel="noreferrer" class="whatsapp-link"><img class="whatsapp-link" src="whatsapp-link.png" alt=""> </a> */}
+
               </li>
               <li class="tag__item play green">
                 
